@@ -89,7 +89,7 @@ const page = () => {
                       >
                         <a
                           className="img-link"
-                          href="single-4.html"
+                          href="/details"
                         ></a>
                         <span
                           className="top-left-icon bg-warning"
@@ -103,13 +103,13 @@ const page = () => {
                           <div
                             className="entry-meta meta-0 font-small mb-20"
                           >
-                            <a href="category.html"
+                            <a href="Tribune"
                             ><span
                               className="post-cat text-info text-uppercase"
                             >Economies</span
                               ></a
                             >
-                            <a href="category.html"
+                            <a href="Tribune"
                             ><span
                               className="post-cat text-success text-uppercase"
                             >Tribune</span
@@ -121,7 +121,7 @@ const page = () => {
                           >
                             <a
                               className="text-white"
-                              href="single-4.html"
+                              href="/details"
                             >
                               Franc CFA, ce que le
                               Christ a à nous dire</a
@@ -155,7 +155,7 @@ const page = () => {
                   >
                     <a
                       className="img-link"
-                      href="single-4.html"
+                      href="/details"
                     ></a>
                     <span className="top-right-icon bg-success"
                     ><i
@@ -209,12 +209,12 @@ const page = () => {
                     <div
                       className="entry-meta meta-0 font-small mb-10"
                     >
-                      <a href="category.html"
+                      <a href="Tribune"
                       ><span className="post-cat text-info"
                       >Modération</span
                         ></a
                       >
-                      <a href="category.html"
+                      <a href="Tribune"
                       ><span className="post-cat text-success"
                       >Economies</span
                         ></a
@@ -224,7 +224,7 @@ const page = () => {
                       <h5
                         className="post-title mb-20 font-weight-900"
                       >
-                        <a href="single-4.html"
+                        <a href="/details"
                         >L’innovation numérique en
                           Afrique : enjeux et
                           dynamiques</a
@@ -257,7 +257,7 @@ const page = () => {
                   >
                     <a
                       className="img-link"
-                      href="single-4.html"
+                      href="/details"
                     ></a>
                     <ul className="social-share">
                       <li>
@@ -306,7 +306,7 @@ const page = () => {
                     <div
                       className="entry-meta meta-0 font-small mb-10"
                     >
-                      <a href="category.html"
+                      <a href="Tribune"
                       ><span className="post-cat text-warning"
                       >Tribune</span
                         ></a
@@ -316,7 +316,7 @@ const page = () => {
                       <h5
                         className="post-title mb-20 font-weight-900"
                       >
-                        <a href="single-4.html"
+                        <a href="/details"
                         >Franc CFA, ce que le Christ a à
                           nous dire</a
                         >
@@ -349,7 +349,7 @@ const page = () => {
                   >
                     <a
                       className="img-link"
-                      href="single-4.html"
+                      href="/details"
                     ></a>
                     <ul className="social-share">
                       <li>
@@ -398,7 +398,7 @@ const page = () => {
                     <div
                       className="entry-meta meta-0 font-small mb-10"
                     >
-                      <a href="category.html"
+                      <a href="Tribune"
                       ><span className="post-cat text-danger"
                       >Modération</span
                         ></a
@@ -408,7 +408,7 @@ const page = () => {
                       <h5
                         className="post-title mb-20 font-weight-900"
                       >
-                        <a href="single-4.html"
+                        <a href="/details"
                         >L’innovation numérique en
                           Afrique : enjeux et
                           dynamiques</a
@@ -440,7 +440,7 @@ const page = () => {
                   >
                     <a
                       className="img-link"
-                      href="single-4.html"
+                      href="/details"
                     ></a>
                     <span className="top-right-icon bg-info"
                     ><i
@@ -494,7 +494,7 @@ const page = () => {
                     <div
                       className="entry-meta meta-0 font-small mb-10"
                     >
-                      <a href="category.html"
+                      <a href="Tribune"
                       ><span className="post-cat text-success"
                       >Politiques</span
                         ></a
@@ -504,7 +504,7 @@ const page = () => {
                       <h5
                         className="post-title mb-20 font-weight-900"
                       >
-                        <a href="single-4.html"
+                        <a href="/details"
                         >Sortir de l’illusion de la
                           prospérité assurée par l'État</a
                         >
@@ -527,11 +527,11 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="bg-grey pt-50 pb-50">
+        <div id="about" className="bg-grey pt-50 pb-50">
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
-                <div className="post-module-2">
+                <div  className="post-module-2">
                   <div className="container">
                     <h2 className="font-weight-900">
                       Polycasquettes
@@ -686,7 +686,7 @@ const page = () => {
                           >
                             <a
                               className="color-white"
-                              href="single-4.html"
+                              href="/details"
                             >
                             </a>
                           </div>
@@ -717,7 +717,7 @@ const page = () => {
                           >
                             <a
                               className="color-white"
-                              href="single-4.html"
+                              href="/details"
                             >
                             </a>
                           </div>
@@ -749,7 +749,7 @@ const page = () => {
                           >
                             <a
                               className="color-white"
-                              href="single-4.html"
+                              href="/details"
                             >
                             </a>
                           </div>
@@ -857,7 +857,7 @@ const page = () => {
                                 className="post-title mb-15 text-limit-2-row font-medium"
                               >
                                 <a
-                                  href="single-4.html"
+                                  href="/details"
                                 >Liberté, Beauté, Prospérité</a
                                 >
                               </h6>
@@ -879,7 +879,7 @@ const page = () => {
                             >
                               <a
                                 className="color-white"
-                                href="single-4.html"
+                                href="/details"
                               >
                                 <Image src={Liberte} alt="" />
                               </a>
@@ -899,7 +899,7 @@ const page = () => {
                                 className="post-title mb-15 text-limit-2-row font-medium"
                               >
                                 <a
-                                  href="single-4.html"
+                                  href="/details"
                                 >Le mythe du multiplicateur keynésien au Bénin</a
                                 >
                               </h6>
@@ -921,7 +921,7 @@ const page = () => {
                             >
                               <a
                                 className="color-white"
-                                href="single-4.html"
+                                href="/details"
                               >
                                 <Image src={Multiplicateur} alt="" />
                               </a>
@@ -941,7 +941,7 @@ const page = () => {
                                 className="post-title mb-15 text-limit-2-row font-medium"
                               >
                                 <a
-                                  href="single-4.html"
+                                  href="/details"
                                 >Sur le déséquilibre extérieur de l’économie béninoise</a
                                 >
                               </h6>
@@ -963,7 +963,7 @@ const page = () => {
                             >
                               <a
                                 className="color-white"
-                                href="single-4.html"
+                                href="/details"
                               >
                                 <Image src={Desequilibre} alt="" />
                               </a>
@@ -983,7 +983,7 @@ const page = () => {
                                 className="post-title mb-15 text-limit-2-row font-medium"
                               >
                                 <a
-                                  href="single-4.html"
+                                  href="/details"
                                 >Le mythe du multiplicateur keynésien au Bénin</a
                                 >
                               </h6>
@@ -1005,7 +1005,7 @@ const page = () => {
                             >
                               <a
                                 className="color-white"
-                                href="single-4.html"
+                                href="/details"
                               >
                                 <Image src={Multiplicateur} alt="" />
                               </a>
@@ -1024,7 +1024,7 @@ const page = () => {
                                 className="post-title mb-15 text-limit-2-row font-medium"
                               >
                                 <a
-                                  href="single-4.html"
+                                  href="/details"
                                 >L'économie béninoise récompense-t-elle davantage le rentier que l'entrepreneur ?</a
                                 >
                               </h6>
@@ -1046,7 +1046,7 @@ const page = () => {
                             >
                               <a
                                 className="color-white"
-                                href="single-4.html"
+                                href="/details"
                               >
                                 <Image src={Entrepreneur} alt="" />
                               </a>
@@ -1342,13 +1342,13 @@ const page = () => {
             </div>
           </div>
 
-          <div className="row">
+          <div id="don" className="row">
             <div className="col-12">
               {/* <!--author box--> */}
               <div
                 className="author-bio mb-50 bg-grey p-30 border-radius-10"
               >
-                <div
+                <div  
                   className="d-flex justify-content-between align-items-center"
                 >
                   <h3 className="font-weight-900">
@@ -1389,7 +1389,7 @@ const page = () => {
       </main>
       {/*   <!-- End Main content --> */}
       {/* <!--site-bottom--> */}
-      <div className="container single-content">
+      <div id="contact" className="container single-content">
         <div className="entry-wraper mt-50">
           <h1 className="mt-30">Créer des opportunités</h1>
           <p>

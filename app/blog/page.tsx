@@ -46,7 +46,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Illusion.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <ul className="social-share">
                                             <li>
                                                 <a href="#"
@@ -109,7 +109,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Sortir de l’illusion de la
                                                     prospérité assurée par l'État</a
                                                 >
@@ -148,7 +148,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Liberte.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <ul className="social-share">
                                             <li>
                                                 <a href="#"
@@ -206,7 +206,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Liberté, Beauté, Prospérité</a
                                                 >
                                             </h5>
@@ -245,7 +245,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Deficit.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <span className="top-right-icon bg-secondary"
                                         ><i
                                             className="elegant-icon icon_heart_alt"
@@ -308,7 +308,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Déficits jumeaux : Faute de
                                                     vendre suffisamment, le Bénin se
                                                     vend pour soutenir sa
@@ -350,7 +350,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Multiplicateur.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <ul className="social-share">
                                             <li>
                                                 <a href="#"
@@ -408,7 +408,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Le mythe du multiplicateur
                                                     keynésien au Bénin</a
                                                 >
@@ -448,7 +448,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Transition.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <span className="top-right-icon bg-secondary"
                                         ><i
                                             className="elegant-icon icon_heart_alt"
@@ -511,7 +511,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Comprendre la création de richesse plutôt que l'origine de la pauvreté</a
                                                 >
                                             </h5>
@@ -550,7 +550,7 @@ const blogs = () => {
                                         className="post-thumb thumb-overlay img-hover-slide position-relative"
                                         style={{ backgroundImage: `url(${Richess.src})` }}
                                     >
-                                        <a className="img-link" href="single.html"></a>
+                                        <a className="img-link" href="/details"></a>
                                         <ul className="social-share">
                                             <li>
                                                 <a href="#"
@@ -608,7 +608,7 @@ const blogs = () => {
                                             <h5
                                                 className="post-title mb-20 font-weight-900"
                                             >
-                                                <a href="single.html"
+                                                <a href="/details"
                                                 >Comprendre la création de richesse plutôt que l'origine de la pauvreté</a
                                                 >
                                             </h5>

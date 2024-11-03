@@ -11,6 +11,7 @@ import Ads1 from "@/assets/imgs/ads/ads-1.jpeg";
 /* Featured */
 import Logo from "@/assets/imgs/jed/logoJed.png";
 import React from "react";
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -181,17 +182,16 @@ const Header = () => {
                             <nav>
                                 {/*  <!--Desktop menu--> */}
                                 <ul className="main-menu d-none d-lg-inline font-small">
-                                    <li className="menu-item-has-children">
-                                        <a href="">
-                                            <i className="elegant-icon icon_house_alt mr-5"></i> Acceuil</a
-                                        >
+                                    <li >
+                                        <Link href="/">Acceuil</Link>
                                     </li>
-                                    <li><a href="category-list.html">À propos</a></li>
-                                    <li><a href="category-grid.html">Publications</a></li>
-                                    <li><a href="category-big.html">Interventions</a></li>
-                                    <li><a href="category.html">Faire un don</a></li>
-                                    <li><a href="category.html">Contact </a></li>
-                                    <li><a href="category.html">Blog</a></li>
+
+                                    <li><Link href="/#about">À propos</Link></li>
+                                    <li><Link href="">Publications</Link></li>
+                                    <li><Link href="/interventions">Interventions</Link></li>
+                                    <li><Link href="/#don">Faire un don</Link></li>
+                                    <li><Link href="/#contact">Contact</Link></li>
+                                    <li><Link href="/blog">Blog</Link></li>
                                 </ul>
                                 {/* <!--Mobile menu--> */}
                                 <ul id="mobile-menu" className="d-block d-lg-none text-muted">

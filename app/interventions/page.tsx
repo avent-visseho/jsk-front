@@ -45,7 +45,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Podcast</span>
                                             </a>
                                         </div>
@@ -88,7 +88,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Podcast</span>
                                             </a>
                                         </div>
@@ -134,7 +134,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / ECHOS D'ECO</span>
                                             </a>
                                         </div>
@@ -174,7 +174,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / Ça se discute</span>
                                             </a>
                                         </div>
@@ -218,7 +218,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / Ça se discute</span>
                                             </a>
                                         </div>
@@ -262,7 +262,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / Ça se discute</span>
                                             </a>
                                         </div>
@@ -302,7 +302,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / Spécial 60 ans d'indépendance</span>
                                             </a>
                                         </div>
@@ -336,7 +336,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / Ça se discute </span>
                                             </a>
                                         </div>
@@ -374,7 +374,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / IMPACT BUSINESS  </span>
                                             </a>
                                         </div>
@@ -417,7 +417,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Emission / IMPACT BUSINESS  </span>
                                             </a>
                                         </div>
@@ -461,7 +461,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Podcast / Les Insights de l'Eco  </span>
                                             </a>
                                         </div>
@@ -508,7 +508,7 @@ const blogs = () => {
                                     </div>
                                     <div className="post-content p-30">
                                         <div className="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html">
+                                            <a href="/details">
                                                 <span className="post-cat text-info">Modération / conférence  </span>
                                             </a>
                                         </div>
