@@ -14,6 +14,7 @@ import Entrepreneur from "@/assets/imgs/jed/entrepreuneur.jpg";
 import Generosite from "@/assets/imgs/jed/generosite.jpg";
 import EdenOng from "@/assets/imgs/jed/edenOng.png";
 import Ecole229 from "@/assets/imgs/jed/ecole229.png";
+import Sophonie from "@/assets/imgs/jed/sophonie.png";
 
 import React from "react";
 
@@ -57,7 +58,7 @@ const page = () => {
                 </form>
               </div>
               <div className="col-lg-6 text-right d-none d-lg-block">
-                <Image src={Featured} alt="" />
+                <Image src={Sophonie} alt="" style={{height: 400, width: 400}}/>
               </div>
             </div>
           </div>
@@ -531,7 +532,7 @@ const page = () => {
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
-                <div  className="post-module-2">
+                <div className="post-module-2">
                   <div className="container">
                     <h2 className="font-weight-900">
                       Polycasquettes
@@ -1064,7 +1065,7 @@ const page = () => {
         </div>
 
         {/*  <!--archive header--> */}
-        <div className="archive-header pt-50 text-center">
+        <div id="don" className="archive-header pt-50 text-center">
           <div className="container">
             <h2 className="font-weight-900">Soutenir des causes</h2>
             <div className="breadcrumb">
@@ -1248,6 +1249,7 @@ const page = () => {
                           bien-être des orphelins.
                         </p>
                       </div>
+                      <a href="https://www.eden-ong.org/soutien" className="btn btn-radius bg-primary text-white my-4 font-small box-shadow">Je soutiens Eden ONG</a>
                     </div>
                   </div>
                 </div>
@@ -1335,54 +1337,11 @@ const page = () => {
                           l'emploi.
                         </p>
                       </div>
+                      <a href="https://ecole229.bj/partenaires/" className="btn btn-radius bg-primary text-white my-4 font-small box-shadow">Je soutiens l'école 229</a>
                     </div>
                   </div>
                 </div>
               </article>
-            </div>
-          </div>
-
-          <div id="don" className="row">
-            <div className="col-12">
-              {/* <!--author box--> */}
-              <div
-                className="author-bio mb-50 bg-grey p-30 border-radius-10"
-              >
-                <div  
-                  className="d-flex justify-content-between align-items-center"
-                >
-                  <h3 className="font-weight-900">
-                    <span className="vcard author"
-                    ><span className="fn"
-                    ><a
-                      href="author.html"
-                      title="Posts by Steven"
-                      rel="author"
-                    >Je fais un don</a
-                        ></span
-                      ></span
-                    >
-                  </h3>
-                  <div className="form-group ml-120">
-                    <button
-                      type="submit"
-                      className="button button-contactForm"
-                    >
-                      <a className="text-white" href="index.html"
-                      >Je soutiens l'école 229</a
-                      >
-                    </button>
-                    <button
-                      type="submit"
-                      className="button button-contactForm"
-                    >
-                      <a className="text-white" href="index.html"
-                      >Je soutiens Eden ONG</a
-                      >
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1442,8 +1401,8 @@ const page = () => {
                     className="form-control w-100"
                     name="comment"
                     id="comment"
-             /*        cols="30"
-                    rows="9" */
+                    /*        cols="30"
+                           rows="9" */
                     placeholder="Message"
                   ></textarea>
                 </div>
