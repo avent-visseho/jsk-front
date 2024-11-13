@@ -4,6 +4,9 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import DataService from "@/services/DataService";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +29,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  useEffect(() => {
+    console.log('====================================');
+    console.log(pathname);
+    console.log('====================================');
+    DataService.postHistory(pathname);
+  }, [pathname]);
   return (
     <html lang="en">
       <link
