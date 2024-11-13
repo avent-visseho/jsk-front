@@ -28,6 +28,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/imgs/jed/blogs/logo.png"
+    />
+
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossOrigin="anonymous"
+      referrerPolicy="no-referrer"
+    />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header/>
         {children}

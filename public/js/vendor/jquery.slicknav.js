@@ -129,7 +129,7 @@
         '<span class="' + prefix + '_menutxt">' + settings.label + "</span>",
         '<span class="' + iconClass + '">',
         '<span class="menu-icon"><span class="menu-icon-inner"></span></span>',
-        '<span class="menu-text ml-5">Menu</span>',
+        '<span class="menu-text ml-5">Jsk-opinions</span>',
         "</span>",
         "</" + settings.parentTag + "></div>",
       ].join("")
