@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Image from "next/image";
 import Thumb2 from "@/assets/imgs/news/thumb-2.jpg";
 import Thumb3 from "@/assets/imgs/news/thumb-3.jpg";
@@ -17,6 +18,9 @@ import AfriqueLiberteEconomique from "@/assets/imgs/jed/blogs/afriqueLiberteEcon
 import Horizon from "@/assets/imgs/jed/blogs/horizon.png";
 
 const page = () => {
+  const [books, setBooks] = useState([])
+  const [articles, setArticles] = useState([])
+  const [tribunes, setTribunes] = useState([])
   return (
     <>
       {/* <!-- Start Main content --> */}

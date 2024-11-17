@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
@@ -28,8 +29,60 @@ import IndustriBenin from "@/assets/imgs/jed/blogs/industriBenin.jpg";
 import DigitalSecourAfrique from "@/assets/imgs/jed/blogs/digitalSecourAfrique.png";
 import CoupEtatAfrique from "@/assets/imgs/jed/blogs/coupEtatAfrique.png";
 import Signature from "@/assets/imgs/jed/blogs/signature.png";
+import DataService from "@/services/DataService";
 
 const page = () => {
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    // Réinitialiser l'erreur et le succès
+    setError("");
+    setSuccess(false);
+    setIsSubmitting(true);
+
+    // Validation basique
+    if (!prenom || !nom || !email || !tel || !message) {
+      setError("Veuillez remplir tous les champs.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    DataService.postContact({
+      email: email,
+      firstName: prenom,
+      lastName: nom,
+      phoneNumber: tel,
+      message: message,
+      aggreeWithTerm: true,
+    })
+      .then((response) => {
+        setIsSubmitting(false);
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setTel("");
+        setMessage("");
+        setSuccess(true);
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        setError("Une erreur est survenue. Veuillez réessayer.");
+      });
+  };
+
+  useEffect(() => {
+    
+   
+  }, []);
   return (
     <>
         

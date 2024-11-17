@@ -156,8 +156,6 @@ const Header = () => {
               <div className="col-md-3 col-xs-6">
                 <a href="/">
                   <Image className="logo" src={Logo} alt="" />
-                  {/*  <img className="logo" src="assets/imgs/jed/blogs/logo.png" alt=""
-              /> */}
                 </a>
               </div>
               <div className="col-md-9 col-xs-6 text-right header-top-right">
