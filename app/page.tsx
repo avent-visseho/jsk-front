@@ -1350,7 +1350,7 @@ const page = () => {
           </div>
           <div className="sidebar-widget widget-latest-posts mb-30 mt-20 wow fadeInUp animated">
             <div className="widget-header-2 position-relative mb-30">
-              <h5 className="mt-5 mb-30">Categories</h5>
+              <h5 className="mt-5 mb-30">Tags</h5>
             </div>
             <div className="carausel-3-columns">
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">

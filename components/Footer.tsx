@@ -106,7 +106,7 @@ const Footer = () => {
                 data-wow-delay="0.2s"
               >
                 <div className="widget-header-2 position-relative mb-30">
-                  <h5 className="mt-5 mb-30">Mots clés</h5>
+                  <h5 className="mt-5 mb-30">Sources</h5>
                 </div>
                 <div className="tagcloud mt-50">
                   {sources?.slice(0, 10)?.map((source: any, index: number) => (
