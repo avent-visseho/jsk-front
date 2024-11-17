@@ -1,466 +1,185 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
-import Blog2 from "@/assets/imgs/jed/blogs/blog-2.jpg";
-import Blog3 from "@/assets/imgs/jed/blogs/blog-3.jpg";
-import Blog4 from "@/assets/imgs/jed/blogs/blog-4.jpg";
-import Blog5 from "@/assets/imgs/jed/blogs/blog-5.jpg";
-import Blog6 from "@/assets/imgs/jed/blogs/blog-6.jpg";
-import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
 import Thumb2 from "@/assets/imgs/news/thumb-2.jpg";
 import Thumb3 from "@/assets/imgs/news/thumb-3.jpg";
 import Thumb4 from "@/assets/imgs/news/thumb-4.jpg";
 import Thumb6 from "@/assets/imgs/news/thumb-6.jpg";
-import FocCharure from "@/assets/imgs/jed/blogs/focCharure.jpg";
-import AccelererDigit from "@/assets/imgs/jed/blogs/accerlererDigit.jpg";
-import Talonomics from "@/assets/imgs/jed/blogs/talonomics.jpg";
-import Mara from "@/assets/imgs/jed/blogs/mara.jpg";
-import ComePremierFacteur from "@/assets/imgs/jed/blogs/comePremierFacteur.jpg";
-import Entrepreunariat from "@/assets/imgs/jed/blogs/entrepreunariat.jpg";
-import IndustriBenin from "@/assets/imgs/jed/blogs/industriBenin.jpg";
-import DigitalSecourAfrique from "@/assets/imgs/jed/blogs/digitalSecourAfrique.png";
-import CoupEtatAfrique from "@/assets/imgs/jed/blogs/coupEtatAfrique.png";
 
-import Trump from "@/assets/imgs/jed/blogs/trump.jpg"
+import {
+  getBook,
+  getIntervention,
+  getPost,
+  getTribunes,
+  searchPost,
+} from "@/services/DataService";
+import { formatPostName, formatPublishedDate } from "@/helpers/utils";
+import Link from "next/link";
 
 const page = () => {
+  const [posts, setPosts] = useState([]);
+  const [totalPage, setTotalPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const [books, setBooks] = useState([]);
+  const [tribunes, setTribunes] = useState([]);
+  const [interventions, setInterventions] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    if (search != "") {
+      searchPost(search, page).then((res) => {
+        setPosts(res.data.data);
+        setTotalPage(res.data.total);
+      });
+    } else {
+      getPost(page).then((res) => {
+        setTotalPage(res.data.total);
+        setPosts(res.data.data);
+      });
+    }
+    getBook().then((res) => {
+      setBooks(res.data.data);
+    });
+    getIntervention().then((res) => {
+      setInterventions(res.data);
+    });
+
+    getTribunes().then((res) => {
+      setTribunes(res.data.data);
+    });
+  }, [search, page]);
   return (
     <>
       {/* <!-- Start Main content --> */}
       <main>
-
-      <div className="archive-header pt-50">
-        <div className="container">
-          <h2 className="font-weight-900">JSK Opinions</h2>
-          <p className="mt-20">
-            Je souhaite apporter un éclairage nouveau sur des questions
-            complexes liées, entre autres, au continent africain. Je parlerai
-            notamment des impacts des nouvelles technologies de l'information
-            sur l'économie et la société, des enjeux économiques de l'Afrique,
-            de la transition énergétique, et des politiques publiques à mettre
-            en œuvre pour un développement durable. Chaque week-end, je vous
-            adresserai une livraison.
-          </p>
-          <div className="bt-1 border-color-1 mt-30 mb-50"></div>
+        <div className="archive-header pt-50">
+          <div className="container">
+            <h2 className="font-weight-900">JSK Opinions</h2>
+            <p className="mt-20">
+              Je souhaite apporter un éclairage nouveau sur des questions
+              complexes liées, entre autres, au continent africain. Je parlerai
+              notamment des impacts des nouvelles technologies de l'information
+              sur l'économie et la société, des enjeux économiques de l'Afrique,
+              de la transition énergétique, et des politiques publiques à mettre
+              en œuvre pour un développement durable. Chaque week-end, je vous
+              adresserai une livraison.
+            </p>
+            <div className="bt-1 border-color-1 mt-30 mb-50"></div>
+          </div>
         </div>
-      </div>
-      <div className="pb-50">
-        <div className="container">
-          <div className="loop-grid mb-30">
-            <div className="row">
-              <article
-                className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="post-card-1 border-radius-10 hover-up h-100">
-                  <div
-                    className="post-thumb thumb-overlay img-hover-slide position-relative"
-                    style={{ backgroundImage: `url(${Trump.src})` }}
+        <div className="pb-50">
+          <div className="container">
+            <div className="loop-grid mb-30">
+              <div className="row">
+                {posts?.map((post: any, index) => (
+                  <article
+                    className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
+                    data-wow-delay="0.2s"
+                    key={index}
                   >
-                    <a className="img-link" href="details"></a>
-                    <span className="top-right-icon bg-success"
-                      ><i className="elegant-icon icon_camera_alt"></i
-                    ></span>
-                    <ul className="social-share">
-                      <li>
-                        <a href="#"
-                          ><i
-                            className="fa-solid fa-share-nodes"
-                            style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          className="fb"
-                          href="#"
-                          title="Share on Facebook"
-                          target="_blank"
-                          ><i
-                            className="fa-brands fa-facebook-f"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="tw" href="#" target="_blank" title="Tweet now"
-                          ><i
-                            className="fa-brands fa-twitter"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="pt" href="#" target="_blank" title="Pin it"
-                          ><i class="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="post-content p-30">
-                    <div className="entry-meta meta-0 font-small mb-10">
-                      <a href="category.html"
-                        ><span className="post-cat text-info">Articles</span></a
-                      >
-                    </div>
-                    <div className="d-flex post-card-content">
-                      <h6 className="post-title mb-20 font-weight-900">
-                        <a href="details"
-                          >Déficits jumeaux : Faute de vendre suffisamment, le
-                          Bénin se vend pour soutenir sa consommation</a
-                        >
-                      </h6>
-                      <div>
-                        <p className="font-medium text-muted">
-                          Donald Trump a remporté les élections et sera le 47ème
-                          président des États-Unis. Cette victoire a été
-                          confirmée après qu&rsquo... Lire la suite
-                        </p>
-                      </div>
+                    <div className="post-card-1 border-radius-10 hover-up h-100">
                       <div
-                        className="entry-meta meta-1 float-left font-x-small text-uppercase"
+                        className="post-thumb thumb-overlay img-hover-slide position-relative"
+                        style={{
+                          backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${post.coverImage})`,
+                        }}
                       >
-                        <span className="post-on">18 Octobre</span>
-                        <span className="time-reading has-dot"
-                          >12 minutes de lecture</span
-                        >
-                        <span className="post-by has-dot">23k vues</span>
+                        <ul className="social-share">
+                          <li>
+                            <a href="#">
+                              <i
+                                className="fa-solid fa-share-nodes"
+                                style={{ color: "#fff" }}
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="fb"
+                              href="#"
+                              title="Share on Facebook"
+                              target="_blank"
+                            >
+                              <i
+                                className="fa-brands fa-facebook-f"
+                                style={{ color: "#fff" }}
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="tw"
+                              href="#"
+                              target="_blank"
+                              title="Tweet now"
+                            >
+                              <i
+                                className="fa-brands fa-twitter"
+                                style={{ color: "#fff" }}
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="pt"
+                              href="#"
+                              target="_blank"
+                              title="Pin it"
+                            >
+                              <i className="fa-brands fa-linkedin-in"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="post-content p-30">
+                        <div className="entry-meta meta-0 font-small mb-10">
+                          {post?.categories?.map(
+                            (category: any, indexCat: number) => (
+                              <a href="category.html" key={indexCat}>
+                                <span className="post-cat text-info">
+                                  {category?.name}
+                                </span>
+                              </a>
+                            )
+                          )}
+                        </div>
+                        <div className="d-flex post-card-content">
+                          <h6 className="post-title mb-20 font-weight-900">
+                            <Link
+                              href={`/blog/${formatPostName(post?.title)}?q=${
+                                post?.id
+                              }`}
+                            >
+                              {post?.title}
+                            </Link>
+                          </h6>
+                          <div>
+                            <p
+                              className="font-medium text-muted"
+                              dangerouslySetInnerHTML={{
+                                __html: post?.content,
+                              }}
+                            />
+                          </div>
+                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                            <span className="post-on">
+                              {"Publié le " +
+                                formatPublishedDate(post?.publishedAt)}
+                            </span>
+                            <span className="post-by has-dot">
+                              {post?.readCount} lectures
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </article>
-              <article
-                className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="post-card-1 border-radius-10 hover-up h-100">
-                  <div
-                    className="post-thumb thumb-overlay img-hover-slide position-relative"
-                    style={{ backgroundImage: `url(${Blog1.src})` }}
-                  >
-                    <a className="img-link" href="details"></a>
-                    <span className="top-right-icon bg-success"
-                      ><i className="elegant-icon icon_camera_alt"></i
-                    ></span>
-                    <ul className="social-share">
-                      <li>
-                        <a href="#"
-                          ><i
-                            className="fa-solid fa-share-nodes"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          className="fb"
-                          href="#"
-                          title="Share on Facebook"
-                          target="_blank"
-                          ><i
-                            className="fa-brands fa-facebook-f"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="tw" href="#" target="_blank" title="Tweet now"
-                          ><i
-                            className="fa-brands fa-twitter"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="pt" href="#" target="_blank" title="Pin it"
-                          ><i className="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="post-content p-30">
-                    <div className="entry-meta meta-0 font-small mb-10">
-                      <a href="category.html"
-                        ><span className="post-cat text-info">Articles</span></a
-                      >
-                    </div>
-                    <div className="d-flex post-card-content">
-                      <h6 className="post-title mb-20 font-weight-900">
-                        <a href="details"
-                          >Sortir de l’illusion de la prospérité assurée par
-                          l'État</a
-                        >
-                      </h6>
-                      <div>
-                        <p className="font-medium text-muted">
-                          Dans un pays, l'amélioration du niveau de vie de sa
-                          population est intrinsèquement liée à l'augmentation
-                          de la quantité et de la qualité des biens ... Lire la
-                          suite
-                        </p>
-                      </div>
-                      <div
-                        className="entry-meta meta-1 float-left font-x-small text-uppercase"
-                      >
-                        <span className="post-on">18 Octobre</span>
-                        <span className="time-reading has-dot"
-                          >12 minutes de lecture</span
-                        >
-                        <span className="post-by has-dot">23k vues</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article
-                className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="post-card-1 border-radius-10 hover-up h-100">
-                  <div
-                    className="post-thumb thumb-overlay img-hover-slide position-relative"
-                    style={{ backgroundImage: `url(${Blog2.src})` }}
-                  >
-                    <a className="img-link" href="details"></a>
-                    <span className="top-right-icon bg-success"
-                      ><i className="elegant-icon icon_camera_alt"></i
-                    ></span>
-                    <ul className="social-share">
-                      <li>
-                        <a href="#"
-                          ><i
-                            className="fa-solid fa-share-nodes"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          className="fb"
-                          href="#"
-                          title="Share on Facebook"
-                          target="_blank"
-                          ><i
-                            className="fa-brands fa-facebook-f"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="tw" href="#" target="_blank" title="Tweet now"
-                          ><i
-                            className="fa-brands fa-twitter"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="pt" href="#" target="_blank" title="Pin it"
-                          ><i className="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="post-content p-30">
-                    <div className="entry-meta meta-0 font-small mb-10">
-                      <a href="category.html"
-                        ><span className="post-cat text-info">Articles</span></a
-                      >
-                    </div>
-                    <div className="d-flex post-card-content">
-                      <h6 className="post-title mb-20 font-weight-900">
-                        <a href="details"
-                          >Sortir de l’illusion de la prospérité assurée par
-                          l'État</a
-                        >
-                      </h6>
-                      <div>
-                        <p className="font-medium text-muted">
-                          Dans mes écrits, j'ai souvent mis en lumière le lien
-                          intrinsèque entre la liberté économique et le
-                          développement des nations. Cette liberté,... Lire la
-                          suite
-                        </p>
-                      </div>
-                      <div
-                        className="entry-meta meta-1 float-left font-x-small text-uppercase"
-                      >
-                        <span className="post-on">18 Octobre</span>
-                        <span className="time-reading has-dot"
-                          >12 minutes de lecture</span
-                        >
-                        <span className="post-by has-dot">23k vues</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article
-                className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="post-card-1 border-radius-10 hover-up h-100">
-                  <div
-                    className="post-thumb thumb-overlay img-hover-slide position-relative"
-                    style={{ backgroundImage: `url(${Blog2.src})` }}
-                  >
-                    <a className="img-link" href="details"></a>
-                    <span className="top-right-icon bg-success"
-                      ><i className="elegant-icon icon_camera_alt"></i
-                    ></span>
-                    <ul className="social-share">
-                      <li>
-                        <a href="#"
-                          ><i
-                            className="fa-solid fa-share-nodes"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          className="fb"
-                          href="#"
-                          title="Share on Facebook"
-                          target="_blank"
-                          ><i
-                            className="fa-brands fa-facebook-f"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="tw" href="#" target="_blank" title="Tweet now"
-                          ><i
-                            className="fa-brands fa-twitter"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="pt" href="#" target="_blank" title="Pin it"
-                          ><i className="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="post-content p-30">
-                    <div className="entry-meta meta-0 font-small mb-10">
-                      <a href="category.html"
-                        ><span className="post-cat text-info">Articles</span></a
-                      >
-                    </div>
-                    <div className="d-flex post-card-content">
-                      <h6 className="post-title mb-20 font-weight-900">
-                        <a href="details"
-                          >Déficits jumeaux : Faute de vendre suffisamment, le
-                          Bénin se vend pour soutenir sa consommation</a
-                        >
-                      </h6>
-                      <div>
-                        <p className="font-medium text-muted">
-                          La semaine dernière, j'ai eu l'honneur d'être invité
-                          par un groupe de réflexion parisien pour partager ma
-                          vision de l'économie béninoise. Lors de la... Lire la
-                          suite
-                        </p>
-                      </div>
-                      <div
-                        className="entry-meta meta-1 float-left font-x-small text-uppercase"
-                      >
-                        <span className="post-on">18 Octobre</span>
-                        <span className="time-reading has-dot"
-                          >12 minutes de lecture</span
-                        >
-                        <span className="post-by has-dot">23k vues</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article
-                className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="post-card-1 border-radius-10 hover-up h-100">
-                  <div
-                    className="post-thumb thumb-overlay img-hover-slide position-relative"
-                    style={{ backgroundImage: `url(${Blog4.src})` }}
-                  >
-                    <a className="img-link" href="details"></a>
-                    <span className="top-right-icon bg-success"
-                      ><i className="elegant-icon icon_camera_alt"></i
-                    ></span>
-                    <ul className="social-share">
-                      <li>
-                        <a href="#"
-                          ><i
-                            className="fa-solid fa-share-nodes"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          className="fb"
-                          href="#"
-                          title="Share on Facebook"
-                          target="_blank"
-                          ><i
-                            className="fa-brands fa-facebook-f"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="tw" href="#" target="_blank" title="Tweet now"
-                          ><i
-                            className="fa-brands fa-twitter"
-                           style={{color : "#fff"}}
-                          ></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a className="pt" href="#" target="_blank" title="Pin it"
-                          ><i className="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="post-content p-30">
-                    <div className="entry-meta meta-0 font-small mb-10">
-                      <a href="category.html"
-                        ><span className="post-cat text-info">Articles</span></a
-                      >
-                    </div>
-                    <div className="d-flex post-card-content">
-                      <h6 className="post-title mb-20 font-weight-900">
-                        <a href="details"
-                          >Le mythe du multiplicateur keynésien au Bénin</a
-                        >
-                      </h6>
-                      <div>
-                        <p className="font-medium text-muted">
-                          Dans le paysage économique du Bénin, comme dans de
-                          nombreux pays en développement, une croyance persiste
-                          avec une ténacité remarquable : celle du multipli...
-                          Lire la suite
-                        </p>
-                      </div>
-                      <div
-                        className="entry-meta meta-1 float-left font-x-small text-uppercase"
-                      >
-                        <span className="post-on">18 Octobre</span>
-                        <span className="time-reading has-dot"
-                          >12 minutes de lecture</span
-                        >
-                        <span className="post-by has-dot">23k vues</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
       <div className="site-bottom pt-50 pb-50">
@@ -473,83 +192,34 @@ const page = () => {
                 </div>
                 <div className="post-block-list post-module-1">
                   <ul className="list-post">
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={FocCharure} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/focCharure.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              Le froc, la charrue et la croissance économique du
-                              Bénin
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>KANU </strong>
-                            </span>
+                    {tribunes?.slice(0, 5)?.map((tribune: any, index: number) => (
+                      <li className="mb-30" key={index}>
+                        <div className="d-flex hover-up-2 transition-normal">
+                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <div className="color-white">
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_FILE_URL}/${tribune?.coverImage}`}
+                                alt={tribune?.title}
+                                width={90}
+                                height={80}
+                              />
+                            </div>
+                          </div>
+                          <div className="post-content media-body">
+                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
+                              <a href={tribune?.link} target="_blank">
+                                {tribune?.title}
+                              </a>
+                            </h6>
+                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                              <span className="post-on text-primary">
+                                <strong>{tribune?.source?.name} </strong>
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={AccelererDigit} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/accerlererDigit.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              C'est le moment d'accélérer la digitalisation de
-                              l'Afrique
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>KANU </strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={Talonomics} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/talonomics.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              Qu'est-ce que le «Talonomics» ?
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>KANU </strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -564,81 +234,45 @@ const page = () => {
                 </div>
                 <div className="post-block-list post-module-1">
                   <ul className="list-post">
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={ComePremierFacteur} alt="" />
-                            {/*  <img
-                            src="assets/imgs/jed/blogs/comePremierFacteur.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">Les Insights de l'éco</a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Podcast </strong>
-                            </span>
+                    {interventions?.slice(0, 5)?.map((intervention: any, index: number) => (
+                      <li className="mb-30" key={index}>
+                        <div className="d-flex hover-up-2 transition-normal">
+                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <div className="color-white">
+                              <Image
+                                src={intervention?.imageUrl}
+                                alt={intervention?.title}
+                                width={90}
+                                height={80}
+                              />
+                            </div>
+                          </div>
+                          <div className="post-content media-body">
+                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
+                              <a href={intervention?.link} target="_blank">
+                                {intervention?.title}
+                              </a>
+                            </h6>
+                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                              <span
+                                className="post-on text-primary"
+                                style={{
+                                  textTransform: "capitalize",
+                                }}
+                              >
+                                <strong>
+                                  {intervention?.type == "conference"
+                                    ? "Conférence"
+                                    : intervention?.type == "moderation"
+                                    ? "Modération"
+                                    : intervention.type}{" "}
+                                </strong>
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={Entrepreunariat} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/entrepreunariat.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              Comprendre l’écosystème entrepreneurial et
-                              favoriser son émergence au Bénin
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Podcast </strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={IndustriBenin} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/industriBenin.jpg"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              L'INDUSTRIALISATION DU BÉNIN : UN CHANTIER BIEN
-                              ENTAMÉ
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Emission / ECHOS D'ECO </strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -653,77 +287,34 @@ const page = () => {
                 </div>
                 <div className="post-block-list post-module-1">
                   <ul className="list-post">
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={Mara} alt="" />
-                            {/*  <img src="assets/imgs/jed/blogs/mara.jpg" alt="" /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">En terrasse avec Mara</a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Livres</strong>
-                            </span>
+                    {books?.slice(0, 5)?.map((book: any, index: number) => (
+                      <li className="mb-30" key={index}>
+                        <div className="d-flex hover-up-2 transition-normal">
+                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <div className="color-white">
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_FILE_URL}/${book?.coverImage}`}
+                                alt={book?.title}
+                                width={90}
+                                height={80}
+                              />
+                            </div>
+                          </div>
+                          <div className="post-content media-body">
+                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
+                              <a href={book?.link} target="_blank">
+                                {book?.title}
+                              </a>
+                            </h6>
+                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                              <span className="post-on text-primary">
+                                <strong>Livre</strong>
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={DigitalSecourAfrique} alt="" />
-                            {/* <img
-                            src="assets/imgs/jed/blogs/digitalSecourAfrique.png"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              Le digital au secours de l'Afrique
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Livres</strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="mb-30">
-                      <div className="d-flex hover-up-2 transition-normal">
-                        <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                          <a className="color-white" href="details">
-                            <Image src={CoupEtatAfrique} alt="" />
-                            {/*  <img
-                            src="assets/imgs/jed/blogs/coupEtatAfrique.png"
-                            alt=""
-                          /> */}
-                          </a>
-                        </div>
-                        <div className="post-content media-body">
-                          <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                            <a href="details">
-                              Les coups d'état en Afrique: malédition ou point
-                              de passage nécessaire?
-                            </a>
-                          </h6>
-                          <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                            <span className="post-on text-primary">
-                              <strong>Livres</strong>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

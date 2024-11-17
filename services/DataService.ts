@@ -1,7 +1,6 @@
 import axios from "./api";
 
 async function getIpAddress(): Promise<string> {
-  console.log("====================================");
   try {
     // Option 1: Using ipify API (gratuit mais limité)
     const response = await fetch("https://api.ipify.org?format=json");
@@ -34,6 +33,15 @@ export const getBook = (page: number = 1, limit: number = 10) => {
 export const getPost = (page: number = 1, limit: number = 10) => {
   return axios.get(`/post/all-published?page=${page}&limit=${limit}`);
 };
+export const getSinglePost = (id: string) => {
+  return axios.get(`/post/${id}`);
+};
+export const readPost = (id: string) => {
+  return axios.patch(`/post/${id}/read`);
+};
+export const subscribeEmail = (data: { email: string }) => {
+  return axios.post(`/newsletter/subscribe`, data);
+};
 export const searchPost = (
   query?: string,
   page: number = 1,
@@ -62,5 +70,6 @@ export const postHistory = async (pathname: string) => {
     });
 };
 
-const DataService = { postContact, postHistory };
+/* const DataService = { postContact, postHistory };
 export default DataService;
+ */

@@ -1,10 +1,18 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Signature from "@/assets/imgs/jed/blogs/signature.png";
 import Link from "next/link";
+import { getSource, subscribeEmail } from "@/services/DataService";
 
 const Footer = () => {
+  const [sources, setSources] = useState([]);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    getSource().then((res) => setSources(res.data.data));
+  }, []);
   return (
     <div>
       <footer className="pt-50 pb-20 bg-grey">
@@ -24,11 +32,6 @@ const Footer = () => {
                   </p>
                   <p>
                     <Image className="signature" src={Signature} alt="" />
-                    {/* <img
-                    src="/assets/imgs/jed/blogs/signature.png"
-                    className="signature"
-                    alt=""
-                  /> */}
                   </p>
                   <p>
                     <strong className="color-black">Suivez-moi</strong>
@@ -80,20 +83,20 @@ const Footer = () => {
                 </div>
                 <ul className="font-small">
                   <li className="cat-item cat-item-2">
-                  <Link href="/#author">À propos</Link>
+                    <Link href="/#author">À propos</Link>
+                  </li>
+                  <li className="cat-item cat-item-2">
+                    <Link href="/#contact">Contact</Link>
                   </li>
                   <li className="cat-item cat-item-4">
-                  <Link href="publications">Publications</Link>
+                    <Link href="/publications">Publications</Link>
                   </li>
                   <li className="cat-item cat-item-5">
-                  <Link href="interventions">Interventions</Link>
+                    <Link href="/interventions">Interventions</Link>
                   </li>
                   <li className="cat-item cat-item-6">
-                  <Link href="blog">Blog</Link>
+                    <Link href="/blog">Blog</Link>
                   </li>
-                 {/*  <li className="cat-item cat-item-7">
-                  <Link href="">Contact</Link>
-                  </li> */}
                 </ul>
               </div>
             </div>
@@ -106,21 +109,11 @@ const Footer = () => {
                   <h5 className="mt-5 mb-30">Mots clés</h5>
                 </div>
                 <div className="tagcloud mt-50">
-                  <a className="tag-cloud-link" href="category.html">
-                    Tribune
-                  </a>
-                  <a className="tag-cloud-link" href="category.html">
-                    Livre
-                  </a>
-                  <a className="tag-cloud-link" href="category.html">
-                    Article
-                  </a>
-                  <a className="tag-cloud-link" href="category.html">
-                    Podcast
-                  </a>
-                  <a className="tag-cloud-link" href="category.html">
-                    Modération
-                  </a>
+                  {sources?.slice(0, 10)?.map((source: any, index: number) => (
+                    <a className="tag-cloud-link" href="category.html">
+                      {source?.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -142,9 +135,23 @@ const Footer = () => {
                     <input
                       type="email"
                       className="form-control bg-white font-small"
-                      placeholder="Enter your email"
+                      placeholder="Saisissez votre e-mail"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button className="btn bg-primary text-white" type="submit">
+                    <button
+                      className="btn bg-primary text-white"
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        subscribeEmail({ email: email })
+                          .then(() => {
+                            alert("Merci de votre abonnement!");
+                          })
+                          .catch(() => {
+                            alert("Email invalide ou déjà abonné");
+                          });
+                      }}
+                    >
                       S'abonner
                     </button>
                     <label className="mt-20">
@@ -154,9 +161,13 @@ const Footer = () => {
                         type="checkbox"
                         value="1"
                       />
-                      J'accepte les
+                      J'accepte les &nbsp;
                       <a href="#" target="_blank">
-                        termes &amp; conditions
+                        termes &nbsp;
+                      </a>
+                      et
+                      <a href="#" target="_blank">
+                        &nbsp; conditions
                       </a>
                     </label>
                   </form>

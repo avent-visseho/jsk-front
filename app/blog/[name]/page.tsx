@@ -1,36 +1,33 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
-import Blog2 from "@/assets/imgs/jed/blogs/blog-2.jpg";
-import Blog3 from "@/assets/imgs/jed/blogs/blog-3.jpg";
-import Blog4 from "@/assets/imgs/jed/blogs/blog-4.jpg";
-import Blog5 from "@/assets/imgs/jed/blogs/blog-5.jpg";
-import Blog6 from "@/assets/imgs/jed/blogs/blog-6.jpg";
-import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
-import Logo from "@/assets/imgs/jed/blogs/logo.png";
-import Thumb2 from "@/assets/imgs/news/thumb-2.jpg";
 import Thumb3 from "@/assets/imgs/news/thumb-3.jpg";
 import Thumb4 from "@/assets/imgs/news/thumb-4.jpg";
 import Thumb6 from "@/assets/imgs/news/thumb-6.jpg";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import CultureMonde from "@/assets/imgs/jed/blogs/cultureMonde.jpg";
-import JeuneAfrique from "@/assets/imgs/jed/blogs/jeuneAfrique.jpg";
-import Fcfa from "@/assets/imgs/jed/blogs/fcfa.png";
-import New12 from "@/assets/imgs/news/news-12.jpg";
-import Eden from "@/assets/imgs/jed/blogs/eden.png";
-import FocCharure from "@/assets/imgs/jed/blogs/focCharure.jpg";
-import AccelererDigit from "@/assets/imgs/jed/blogs/accerlererDigit.jpg";
-import Talonomics from "@/assets/imgs/jed/blogs/talonomics.jpg";
-import Mara from "@/assets/imgs/jed/blogs/mara.jpg";
-import ComePremierFacteur from "@/assets/imgs/jed/blogs/comePremierFacteur.jpg";
-import Entrepreunariat from "@/assets/imgs/jed/blogs/entrepreunariat.jpg";
-import IndustriBenin from "@/assets/imgs/jed/blogs/industriBenin.jpg";
-import DigitalSecourAfrique from "@/assets/imgs/jed/blogs/digitalSecourAfrique.png";
 import CoupEtatAfrique from "@/assets/imgs/jed/blogs/coupEtatAfrique.png";
-import Signature from "@/assets/imgs/jed/blogs/signature.png";
+import { useSearchParams } from "next/navigation";
+import { getSinglePost, readPost } from "@/services/DataService";
+import { formatPublishedDate } from "@/helpers/utils";
 
-const details = () => {
+const BlogDetail = ({ params }: { params: Promise<{ name: string }> }) => {
+  const name = params.then(({ name }) => {
+    return name;
+  });
+  const [post, setPost] = useState<any>(null);
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("q") ?? "";
+
+  useEffect(() => {
+    console.log("location", id);
+    getSinglePost(id).then((res) => {
+      setPost(res.data.data);
+    });
+    readPost(id);
+  }, []);
   return (
     <div>
       <main className="bg-grey pt-50 pb-50">
@@ -41,30 +38,41 @@ const details = () => {
                 <div className="single-content2">
                   <div className="entry-header entry-header-style-1 mb-50">
                     <h1 className="entry-title mb-30 font-weight-900">
-                      Tribune Afrique des idées 
+                      {post?.title}
                     </h1>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="entry-meta align-items-center meta-2 font-small color-muted">
                           <p className="mb-5">
                             <a className="author-avatar" href="#">
-                              <Image className="img-circle" src={Jed} alt="" />
+                              <Image
+                                className="img-circle"
+                                src={Jed}
+                                alt="Jed Sophonie KOBOUDE"
+                              />
                             </a>
-                            Par 
+                            Par &nbsp;
                             <a href="author.html">
                               <span className="author-name font-weight-bold">
-                               Sophonie Jed Koboude
+                                {post?.title &&
+                                  post?.author?.firstName +
+                                    " " +
+                                    post?.author?.lastName}
                               </span>
                             </a>
                           </p>
-                          <span className="mr-10"> 15 Novembre 2024</span>
-                          <span className="has-dot"> 8 minutes de lecture</span>
+                          <span className="mr-10">
+                            {formatPublishedDate(post?.publishedAt)}
+                          </span>
+                          <span className="has-dot">
+                            {" "}
+                            {post?.readCount} lectures
+                          </span>
                         </div>
                       </div>
                       <div className="col-md-6 text-right d-none d-md-inline">
                         <ul className="header-social-network d-inline-block list-inline mr-15">
-                          <li className="list-inline-item text-muted">
-                          </li>
+                          <li className="list-inline-item text-muted"></li>
                           <li className="list-inline-item">
                             <a
                               className="social-icon fb text-xs-center"
@@ -103,41 +111,29 @@ const details = () => {
                     </div>
                   </div>
                   {/* <!--end single header--> */}
-                  <figure className="image mb-30 m-auto text-center border-radius-10">
-                    <Image
-                      className="border-radius-10"
-                      src={CoupEtatAfrique}
-                      alt=""
-                    />
+                  <figure
+                    className="image mb-30 m-auto text-center border-radius-10"
+                    style={{
+                      minHeight: "450px",
+                    }}
+                  >
+                    {post?.coverImage && (
+                      <Image
+                        className="border-radius-10"
+                        src={`${process.env.NEXT_PUBLIC_FILE_URL}/${post?.coverImage}`}
+                        alt={post?.title}
+                        fill
+                      />
+                    )}
                   </figure>
                   {/*  <!--figure--> */}
                   <article className="entry-wraper mb-50">
                     <div className="excerpt mb-30">
-                      <p>
-                        Gosh jaguar ostrich quail one excited dear hello and
-                        bound and the and bland moral misheard roadrunner
-                        flapped lynx far that and jeepers giggled far and far
-                        bald that roadrunner python inside held shrewdly the
-                        manatee.
-                      </p>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Id vero possimus quo ipsa porro natus dignissimos
-                        provident exercitationem facere odit est sint illo,
-                        cupiditate, recusandae quibusdam tempora veniam ab quae.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Id vero possimus quo ipsa porro natus dignissimos
-                        provident exercitationem facere odit est sint illo,
-                        cupiditate, recusandae quibusdam tempora veniam ab quae.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Id vero possimus quo ipsa porro natus dignissimos
-                        provident exercitationem facere odit est sint illo,
-                        cupiditate, recusandae quibusdam tempora veniam ab quae.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Id vero possimus quo ipsa porro natus dignissimos
-                        provident exercitationem facere odit est sint illo,
-                        cupiditate, recusandae quibusdam tempora veniam ab quae.
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: post?.content,
+                        }}
+                      />
                     </div>
                   </article>
                 </div>
@@ -148,13 +144,8 @@ const details = () => {
                     <Image
                       src={Jed}
                       className="about-author-img mb-25"
-                      alt=""
+                      alt="Jed Sophonie KOBOUDE"
                     />
-                    {/* <img
-                    className="about-author-img mb-25"
-                    src="assets/imgs/jed/blogs/jed.png"
-                    alt=""
-                  /> */}
                     <h5 className="mb-20">Sophonie Jed Koboude</h5>
                     <p className="text-muted">
                       <span
@@ -326,4 +317,4 @@ const details = () => {
   );
 };
 
-export default details;
+export default BlogDetail;

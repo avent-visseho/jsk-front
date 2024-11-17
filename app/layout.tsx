@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -7,7 +7,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import DataService from "@/services/DataService";
+import { postHistory } from "@/services/DataService";
+import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,30 +33,29 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   useEffect(() => {
-    console.log('====================================');
-    console.log(pathname);
-    console.log('====================================');
-    DataService.postHistory(pathname);
+    postHistory(pathname);
   }, [pathname]);
   return (
     <html lang="en">
-      <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="assets/imgs/jed/blogs/logo.png"
-    />
+      <Head>
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="assets/imgs/jed/blogs/logo.png"
+        />
 
-      <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossOrigin="anonymous"
-      referrerPolicy="no-referrer"
-    />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header/>
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
         {/* <!-- Vendor JS--> */}
         <Script src="/js/vendor/modernizr-3.6.0.min.js"></Script>
         <Script src="/js/vendor/jquery-3.6.0.min.js"></Script>
@@ -73,12 +73,8 @@ export default function RootLayout({
         <Script src="/js/vendor/perfect-scrollbar.js"></Script>
         <Script src="/js/vendor/waypoints.min.js"></Script>
         <Script src="/js/vendor/jquery.theia.sticky.js"></Script>
-       {/*  <!-- NewsBoard JS --> */}
+        {/*  <!-- NewsBoard JS --> */}
         <Script src="/js/main.js"></Script>
-
-        
-
-
       </body>
     </html>
   );

@@ -192,17 +192,17 @@ const Header = () => {
                     <Link href="/#author">À propos</Link>
                   </li>
                   <li>
-                    <Link href="publications">Publications</Link>
+                    <Link href="/#contact">Contact</Link>
                   </li>
                   <li>
-                    <Link href="interventions">Interventions</Link>
+                    <Link href="/publications">Publications</Link>
                   </li>
                   <li>
-                    <Link href="blog">Blog</Link>
+                    <Link href="/interventions">Interventions</Link>
                   </li>
-                 {/*  <li>
-                    <Link href="#">Contact</Link>
-                  </li> */}
+                  <li>
+                    <Link href="/blog">Blog</Link>
+                  </li>
                 </ul>
                 {/*  <!--Mobile menu--> */}
                 <ul id="mobile-menu" className="d-block d-lg-none text-muted">
@@ -215,17 +215,17 @@ const Header = () => {
                     <Link href="/#author">À propos</Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="publications">Publications</Link>
+                    <Link href="/#contact">Contact</Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="interventions">Interventions</Link>
+                    <Link href="/publications">Publications</Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="blog">Blog</Link>
+                    <Link href="/interventions">Interventions</Link>
                   </li>
-                 {/*  <li className="menu-item-has-children">
-                    <a href="#">Contact</a>
-                  </li> */}
+                  <li className="menu-item-has-children">
+                    <Link href="/blog">Blog</Link>
+                  </li>
                 </ul>
               </nav>
             </div>
