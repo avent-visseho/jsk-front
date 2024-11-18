@@ -1,16 +1,34 @@
-import React from "react";
+"use client";
+
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
 import Blog2 from "@/assets/imgs/jed/blogs/blog-2.jpg";
 import Blog3 from "@/assets/imgs/jed/blogs/blog-3.jpg";
 import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
 import Logo from "@/assets/imgs/jed/blogs/logo.png";
-import Thumb2 from "@/assets/imgs/news/thumb-2.jpg";
-import Thumb3 from "@/assets/imgs/news/thumb-3.jpg";
-import Thumb4 from "@/assets/imgs/news/thumb-4.jpg";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const query = form.search.value;
+
+    if (query) {
+        // Redirige sur la page de recherche
+        router.push(`/search?query=${query}`);
+    }
+
+     // Ferme automatiquement la barre de recherche
+     setIsSearchOpen(false);
+};
+
   return (
     <div>
       <div className="scroll-progress primary-bg"></div>
@@ -160,7 +178,10 @@ const Header = () => {
               </div>
               <div className="col-md-9 col-xs-6 text-right header-top-right">
                 <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
-                <button className="search-icon d-none d-md-inline">
+                <button
+                  className="search-icon d-none d-md-inline"
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                >
                   <span className="mr-15 text-muted font-small">
                     <i className="fa-solid fa-magnifying-glass"></i> Rechercher
                   </span>
@@ -282,6 +303,7 @@ const Header = () => {
         </div>
       </header>
       {/*  <!--Start search form--> */}
+      {isSearchOpen && (
       <div className="main-search-form">
         <div className="container">
           <div className="pt-50 pb-50">
@@ -290,16 +312,18 @@ const Header = () => {
                 <p className="text-center">
                   <span className="search-text-bg">Rechercher</span>
                 </p>
-                <form action="#" className="search-header">
+                <form onSubmit={handleSearch} className="search-header">
                   <div className="input-group w-100">
                     <input
                       type="text"
+                      name="search"
                       className="form-control"
-                      placeholder="Rechercher des articles, des livres"
+                      placeholder="Recherchez des articles, des lieux et des personnes"
                     />
                     <div className="input-group-append">
-                      <button className="btn btn-search bg-white" type="submit">
-                        <i className="elegant-icon icon_search"></i>
+                      <button type="submit" className="btn btn-primary">
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                        Rechercher
                       </button>
                     </div>
                   </div>
@@ -330,6 +354,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };
