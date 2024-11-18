@@ -764,66 +764,35 @@ const page = () => {
             </div>
             <div className="carausel-3-columns">
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                  <a className="color-white" href="details">
-                    <Image src={Thumb2} alt="" />
-                  </a>
-                </div>
+               
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Tribunes</a>
                   </h6>
-                  <p className="text-muted font-small">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                  <a className="color-white" href="details">
-                    <Image src={Thumb3} alt="" />
-                    {/* <img src="assets/imgs/news/thumb-2.jpg" alt="" /> */}
-                  </a>
-                </div>
+                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Podcast</a>
                   </h6>
-                  <p className="text-muted font-small">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                  <a className="color-white" href="details">
-                    <Image src={Thumb4} alt="" />
-                    {/*  <img src="assets/imgs/news/thumb-3.jpg" alt="" /> */}
-                  </a>
-                </div>
+                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Emission</a>
                   </h6>
-                  <p className="text-muted font-small">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                  <a className="color-white" href="details">
-                    <Image src={Thumb6} alt="" />
-                    {/* <img src="assets/imgs/news/thumb-4.jpg" alt="" /> */}
-                  </a>
-                </div>
+                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Livres</a>
                   </h6>
-                  <p className="text-muted font-small">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
                 </div>
               </div>
             </div>

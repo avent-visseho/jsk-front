@@ -1354,7 +1354,6 @@ const page = () => {
             </div>
             <div className="carausel-3-columns">
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-               
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Tribunes</a>
@@ -1362,7 +1361,6 @@ const page = () => {
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Podcast</a>
@@ -1370,7 +1368,6 @@ const page = () => {
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Emission</a>
@@ -1378,7 +1375,6 @@ const page = () => {
                 </div>
               </div>
               <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                
                 <div className="post-content media-body">
                   <h6>
                     <a href="category.html">Livres</a>
@@ -1386,6 +1382,82 @@ const page = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="entry-wraper mt-50">
+            <h1 className="mt-30 mb-30">Créer des opportunités</h1>
+            <p className="font-large">
+              Discussions, échanges, besoin d'accompagnement ou d'intervenant,
+              chaque message trouvera écho !
+            </p>
+            <form
+              className="form-contact comment_form"
+              action="#"
+              id="commentForm"
+            >
+              <div className="row">
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="firstName"
+                      id="name"
+                      type="text"
+                      placeholder="firstName"
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="lastName"
+                      id="name"
+                      type="text"
+                      placeholder="lastName"
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="email"
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="phoneNumber"
+                      id="website"
+                      type="text"
+                      placeholder="phone Number"
+                    />
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-group">
+                    <textarea
+                      className="form-control w-100"
+                      name="message"
+                      id="comment"
+                      cols="30"
+                      rows="9"
+                      placeholder="Message"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div className="form-group">
+                <button onClick={handleSubmit} type="submit" className="button button-contactForm">
+                  Send message
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
