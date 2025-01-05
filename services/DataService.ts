@@ -21,6 +21,9 @@ export const getArticles = () => {
 export const getSource = () => {
   return axios.get(`/source`);
 };
+export const getCategories = () => {
+  return axios.get(`/category`);
+};
 export const getIntervention = (page: number = 1, limit: number = 10) => {
   return axios.get(`/intervention?limit=${limit}&page=${page}`);
 };

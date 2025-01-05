@@ -110,7 +110,7 @@ const Footer = () => {
                 </div>
                 <div className="tagcloud mt-50">
                   {sources?.slice(0, 10)?.map((source: any, index: number) => (
-                    <a className="tag-cloud-link" href="category.html">
+                    <a key={index} className="tag-cloud-link" href="category.html">
                       {source?.name}
                     </a>
                   ))}

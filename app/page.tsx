@@ -13,18 +13,9 @@ import JeuneAfrique from "@/assets/imgs/jed/blogs/jeuneAfrique.jpg";
 import Fcfa from "@/assets/imgs/jed/blogs/fcfa.png";
 import New12 from "@/assets/imgs/news/news-12.jpg";
 import Eden from "@/assets/imgs/jed/blogs/eden.png";
-import FocCharure from "@/assets/imgs/jed/blogs/focCharure.jpg";
-import AccelererDigit from "@/assets/imgs/jed/blogs/accerlererDigit.jpg";
-import Talonomics from "@/assets/imgs/jed/blogs/talonomics.jpg";
-import Mara from "@/assets/imgs/jed/blogs/mara.jpg";
-import ComePremierFacteur from "@/assets/imgs/jed/blogs/comePremierFacteur.jpg";
-import Entrepreunariat from "@/assets/imgs/jed/blogs/entrepreunariat.jpg";
-import IndustriBenin from "@/assets/imgs/jed/blogs/industriBenin.jpg";
-import DigitalSecourAfrique from "@/assets/imgs/jed/blogs/digitalSecourAfrique.png";
-import CoupEtatAfrique from "@/assets/imgs/jed/blogs/coupEtatAfrique.png";
-import Signature from "@/assets/imgs/jed/blogs/signature.png";
 import {
   getBook,
+  getCategories,
   getIntervention,
   getPost,
   getTribunes,
@@ -33,6 +24,7 @@ import {
 } from "@/services/DataService";
 import { formatPostName, formatPublishedDate } from "@/helpers/utils";
 import Link from "next/link";
+import BottomSection from "@/components/BottomSection";
 
 const page = () => {
   const [nom, setNom] = useState("");
@@ -47,6 +39,7 @@ const page = () => {
   const [tribunes, setTribunes] = useState([]);
   const [interventions, setInterventions] = useState([]);
   const [posts, setPosts] = useState<any[]>([]);
+  const [tags, setTags] = useState<any[]>([]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -79,10 +72,12 @@ const page = () => {
         setTel("");
         setMessage("");
         setSuccess(true);
+        alert("Merci pour votre message. Nous vous répondrons très bientôt");
       })
       .catch((error) => {
         setIsSubmitting(false);
         setError("Une erreur est survenue. Veuillez réessayer.");
+        alert("Une erreur est survenue. Veuillez réessayer.");
       });
   };
 
@@ -91,13 +86,16 @@ const page = () => {
       setBooks(res.data.data);
     });
     getIntervention().then((res) => {
-      setInterventions(res.data);
+      setInterventions(res.data?.data);
     });
     getPost().then((res) => {
       setPosts(res.data.data);
     });
     getTribunes().then((res) => {
       setTribunes(res.data.data);
+    });
+    getCategories().then((res) => {
+      setTags(res.data.data);
     });
   }, []);
   return (
@@ -404,9 +402,6 @@ const page = () => {
                             style={{
                               backgroundImage: `url(${CultureMonde.src})`,
                             }}
-                            /* style="
-                            background-image: url(assets/imgs/jed/blogs/cultureMonde.jpg);
-                          " */
                           >
                             <a className="img-link" href="details"></a>
                             <ul className="social-share">
@@ -505,9 +500,6 @@ const page = () => {
                             style={{
                               backgroundImage: `url(${JeuneAfrique.src})`,
                             }}
-                            /* style="
-                            background-image: url(assets/imgs/jed/blogs/jeuneAfrique.jpg);
-                          " */
                           >
                             <a className="img-link" href="details"></a>
                             <ul className="social-share">
@@ -696,9 +688,6 @@ const page = () => {
                           <div
                             className="post-thumb thumb-overlay img-hover-slide position-relative"
                             style={{ backgroundImage: `url(${New12.src})` }}
-                            /* style="
-                            background-image: url(assets/imgs/news/news-12.jpg);
-                          " */
                           >
                             <a className="img-link" href="details"></a>
                             <ul className="social-share">
@@ -1039,7 +1028,10 @@ const page = () => {
                             personnel, dans une dynamique harmonieuse et pour le
                             bien commun.
                           </p>
-                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow">
+                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
+                          onClick={() => {
+                            window.open("/#contact", "_self");
+                          }}>
                             Faire un don
                           </button>
                         </div>
@@ -1101,9 +1093,6 @@ const page = () => {
                         </ul>
                       </div>
                       <div className="post-content p-30">
-                        {/*  <!-- <div className="entry-meta meta-0 font-small mb-10">
-                        <span className="post-cat text-warning">Fashion</span>
-                      </div> --> */}
                         <div className="d-flex post-card-content">
                           <h5 className="post-title mb-20 font-weight-900">
                             Eden ONG Orphelinat / Association
@@ -1118,7 +1107,10 @@ const page = () => {
                             santé à l'orphelinat pour contribuer au bien-être
                             des orphelins.
                           </p>
-                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow">
+                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
+                          onClick={() => {
+                            window.open("https://www.eden-ong.org/soutien", "_blank");
+                          }}>
                             Faire un don
                           </button>
                         </div>
@@ -1180,12 +1172,9 @@ const page = () => {
                         </ul>
                       </div>
                       <div className="post-content p-30">
-                        {/* <!-- <div className="entry-meta meta-0 font-small mb-10">
-                        <span className="post-cat text-warning">Fashion</span>
-                      </div> --> */}
                         <div className="d-flex post-card-content">
                           <h5 className="post-title mb-20 font-weight-900">
-                            Ecole 229Enseignement / Formation
+                            Ecole 229 Enseignement / Formation
                           </h5>
                           <p className="font-medium text-muted">
                             L'école 229 a pour mission de faire du numérique un
@@ -1195,7 +1184,12 @@ const page = () => {
                             développement de l'écosystème numérique en Afrique
                             pour favoriser l'inclusivité et l'accès à l'emploi.
                           </p>
-                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow">
+                          <button
+                            className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
+                            onClick={() => {
+                              window.open("https://ecole229.bj/partenaires/", "_blank");
+                            }}
+                          >
                             Faire un don
                           </button>
                         </div>
@@ -1210,257 +1204,8 @@ const page = () => {
       </main>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
-      <div className="site-bottom pt-50 pb-50">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-6">
-              <div className="sidebar-widget widget-latest-posts mb-30 wow fadeInUp animated">
-                <div className="widget-header-2 position-relative mb-30">
-                  <h5 className="mt-5 mb-30">Publications</h5>
-                </div>
-                <div className="post-block-list post-module-1">
-                  <ul className="list-post">
-                    {tribunes?.map((tribune: any, index: number) => (
-                      <li className="mb-30" key={index}>
-                        <div className="d-flex hover-up-2 transition-normal">
-                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <div className="color-white">
-                              <Image
-                                src={`${process.env.NEXT_PUBLIC_FILE_URL}/${tribune?.coverImage}`}
-                                alt={tribune?.title}
-                                width={90}
-                                height={80}
-                              />
-                            </div>
-                          </div>
-                          <div className="post-content media-body">
-                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                              <a href={tribune?.link} target="_blank">
-                                {tribune?.title}
-                              </a>
-                            </h6>
-                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                              <span className="post-on text-primary">
-                                <strong>{tribune?.source?.name} </strong>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div
-                className="sidebar-widget widget-latest-posts mb-30 wow fadeInUp animated"
-                data-wow-delay="0.2s"
-              >
-                <div className="widget-header-2 position-relative mb-30">
-                  <h5 className="mt-5 mb-30">Interventions</h5>
-                </div>
-                <div className="post-block-list post-module-1">
-                  <ul className="list-post">
-                    {interventions?.map((intervention: any, index: number) => (
-                      <li className="mb-30" key={index}>
-                        <div className="d-flex hover-up-2 transition-normal">
-                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <div className="color-white">
-                              <Image
-                                src={intervention?.imageUrl}
-                                alt={intervention?.title}
-                                width={90}
-                                height={80}
-                              />
-                            </div>
-                          </div>
-                          <div className="post-content media-body">
-                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                              <a href={intervention?.link} target="_blank">
-                                {intervention?.title}
-                              </a>
-                            </h6>
-                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                              <span
-                                className="post-on text-primary"
-                                style={{
-                                  textTransform: "capitalize",
-                                }}
-                              >
-                                <strong>
-                                  {intervention?.type == "conference"
-                                    ? "Conférence"
-                                    : intervention?.type == "moderation"
-                                    ? "Modération"
-                                    : intervention.type}{" "}
-                                </strong>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div
-                className="sidebar-widget widget-latest-posts mb-30 wow fadeInUp animated"
-                data-wow-delay="0.4s"
-              >
-                <div className="widget-header-2 position-relative mb-30">
-                  <h5 className="mt-5 mb-30">Livres</h5>
-                </div>
-                <div className="post-block-list post-module-1">
-                  <ul className="list-post">
-                    {books?.map((book: any, index: number) => (
-                      <li className="mb-30" key={index}>
-                        <div className="d-flex hover-up-2 transition-normal">
-                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                            <div className="color-white">
-                              <Image
-                                src={`${process.env.NEXT_PUBLIC_FILE_URL}/${book?.coverImage}`}
-                                alt={book?.title}
-                                width={90}
-                                height={80}
-                              />
-                            </div>
-                          </div>
-                          <div className="post-content media-body">
-                            <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                              <a href={book?.link} target="_blank">
-                                {book?.title}
-                              </a>
-                            </h6>
-                            <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                              <span className="post-on text-primary">
-                                <strong>Livre</strong>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="sidebar-widget widget-latest-posts mb-30 mt-20 wow fadeInUp animated">
-            <div className="widget-header-2 position-relative mb-30">
-              <h5 className="mt-5 mb-30">Tags</h5>
-            </div>
-            <div className="carausel-3-columns">
-              <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-content media-body">
-                  <h6>
-                    <a href="category.html">Tribunes</a>
-                  </h6>
-                </div>
-              </div>
-              <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-content media-body">
-                  <h6>
-                    <a href="category.html">Podcast</a>
-                  </h6>
-                </div>
-              </div>
-              <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-content media-body">
-                  <h6>
-                    <a href="category.html">Emission</a>
-                  </h6>
-                </div>
-              </div>
-              <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
-                <div className="post-content media-body">
-                  <h6>
-                    <a href="category.html">Livres</a>
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="entry-wraper mt-50">
-            <h1 className="mt-30 mb-30">Créer des opportunités</h1>
-            <p className="font-large">
-              Discussions, échanges, besoin d'accompagnement ou d'intervenant,
-              chaque message trouvera écho !
-            </p>
-            <form
-              className="form-contact comment_form"
-              action="#"
-              id="commentForm"
-            >
-              <div className="row">
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      name="firstName"
-                      id="name"
-                      type="text"
-                      placeholder="firstName"
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      name="lastName"
-                      id="name"
-                      type="text"
-                      placeholder="lastName"
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      name="email"
-                      id="email"
-                      type="email"
-                      placeholder="Email"
-                    />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      name="phoneNumber"
-                      id="website"
-                      type="text"
-                      placeholder="phone Number"
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="form-group">
-                    <textarea
-                      className="form-control w-100"
-                      name="message"
-                      id="comment"
-                      cols="30"
-                      rows="9"
-                      placeholder="Message"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div className="form-group">
-                <button onClick={handleSubmit} type="submit" className="button button-contactForm">
-                  Send message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <BottomSection />
+
     </>
   );
 };
