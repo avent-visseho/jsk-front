@@ -9,29 +9,20 @@ import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
 import Logo from "@/assets/imgs/jed/blogs/logo.png";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { AiFillFacebook } from "react-icons/ai";
-import { FiFacebook, FiLinkedin, FiX } from "react-icons/fi";
 import SocialLinks from "./SocialLinks";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const query = form.search.value;
+    setIsSearchOpen(false);
 
-    if (pathname === "/") {
-      setIsSearchOpen(false);
-    }
-
-    if (query) {
-      // Redirige sur la page de recherche
-      router.push(`${pathname}?q=${query}`);
-      setIsSearchOpen(false);
-    }
+    // Redirige sur la page de recherche
+    router.replace(`${pathname}?q=${searchQuery}`);
   };
 
   return (
@@ -46,7 +37,10 @@ const Header = () => {
       {/* <!--Offcanvas sidebar--> */}
 
       {/* <!-- Start Header --> */}
-      <header className="main-header header-style-1 font-heading">
+      <header
+        className="main-header header-style-1 font-heading position-fixed top-0 w-100 bg-white"
+        style={{ zIndex: 999, boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}
+      >
         <div className="header-top">
           <div className="container">
             <div className="row pt-20 pb-20">
@@ -56,15 +50,26 @@ const Header = () => {
                 </a>
               </div>
               <div className="col-md-9 col-xs-6 text-right header-top-right">
-                <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
-                <button
-                  className="search-icon d-none d-md-inline"
-                  onClick={() => setIsSearchOpen((val) => !val)}
-                >
-                  <span className="mr-15 text-muted font-small">
-                    <i className="fa-solid fa-magnifying-glass"></i> Rechercher
-                  </span>
-                </button>
+                {(pathname === "/publications" ||
+                  pathname === "/interventions") && (
+                  <>
+                    <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
+                    <button
+                      className="search-icon d-none d-md-inline"
+                      onClick={() => {
+                        console.log("====================================");
+                        console.log(isSearchOpen);
+                        console.log("====================================");
+                        setIsSearchOpen((val) => !val);
+                      }}
+                    >
+                      <span className="mr-15 text-muted font-small">
+                        <i className="fa-solid fa-magnifying-glass"></i>{" "}
+                        Rechercher
+                      </span>
+                    </button>
+                  </>
+                )}
                 <Link
                   className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
                   href="/#don"
@@ -148,8 +153,7 @@ const Header = () => {
                     </a>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/#author">À
-                     propos</Link>
+                    <Link href="/#author">À propos</Link>
                   </li>
                   <li className="menu-item-has-children">
                     <Link href="/#contact">Contact</Link>
@@ -198,9 +202,12 @@ const Header = () => {
                         name="search"
                         className="form-control"
                         placeholder="Recherchez des articles, des lieux et des personnes"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        required
                       />
                       <div className="input-group-append">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary" >
                           <i className="fa-solid fa-magnifying-glass"></i>
                           Rechercher
                         </button>
@@ -216,16 +223,16 @@ const Header = () => {
                   </h5>
                   <ul className="list-inline d-inline-block">
                     <li className="list-inline-item">
-                      <a href="category.html">Digital</a>
+                      <a href="#">Digital</a>
                     </li>
                     <li className="list-inline-item">
-                      <a href="category.html">Economie</a>
+                      <a href="#">Economie</a>
                     </li>
                     <li className="list-inline-item">
-                      <a href="category.html">Finance</a>
+                      <a href="#">Finance</a>
                     </li>
                     <li className="list-inline-item">
-                      <a href="category.html">Afrique</a>
+                      <a href="#">Afrique</a>
                     </li>
                   </ul>
                 </div>

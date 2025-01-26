@@ -5,7 +5,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { postHistory } from "@/services/DataService";
 import Head from "next/head";
@@ -127,7 +127,11 @@ export default function RootLayout({
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        <Suspense fallback={<Loader />}>{children}</Suspense>
+        <Suspense fallback={<Loader />}>
+          <main style={{ 
+           paddingTop: "100px",
+           }}>{children}</main>
+        </Suspense>
         <Footer />
         {/* <!-- Vendor JS--> */}
         <Script src="/js/vendor/modernizr-3.6.0.min.js"></Script>

@@ -62,7 +62,7 @@ const page = () => {
   return (
     <>
       {/* <!-- Start Main content --> */}
-      <main>
+      <>
         <div className="archive-header pt-50">
           <div className="container">
             <h2 className="font-weight-900">JSK Opinions</h2>
@@ -135,12 +135,14 @@ const page = () => {
                     value={searchQuery.tag}
                     onChange={(e) =>
                       setSearchQuery({ ...searchQuery, tag: e.target.value })
-                    }                    
+                    }
                   >
                     <option value="">Tous les tags</option>
                     {tags.length > 0 &&
-                      tags.map((tag: any, index:number) => (
-                        <option value={tag?.id} key={index}>{tag?.name}</option>
+                      tags.map((tag: any, index: number) => (
+                        <option value={tag?.id} key={index}>
+                          {tag?.name}
+                        </option>
                       ))}
                   </select>
                 </div>
@@ -260,7 +262,7 @@ const page = () => {
                           <div className="entry-meta meta-0 font-small mb-10">
                             {post?.categories?.map(
                               (category: any, indexCat: number) => (
-                                <a href="category.html" key={indexCat}>
+                                <a href="#" key={indexCat}>
                                   <span className="post-cat text-info">
                                     {category?.name}
                                   </span>
@@ -312,7 +314,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </main>
+      </>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
       <BottomSection />

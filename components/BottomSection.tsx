@@ -178,28 +178,28 @@ const BottomSection = () => {
             <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
               <div className="post-content media-body">
                 <h6>
-                  <a href="category.html">Tribunes</a>
+                  <a href="#">Tribunes</a>
                 </h6>
               </div>
             </div>
             <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
               <div className="post-content media-body">
                 <h6>
-                  <a href="category.html">Podcast</a>
+                  <a href="#">Podcast</a>
                 </h6>
               </div>
             </div>
             <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
               <div className="post-content media-body">
                 <h6>
-                  <a href="category.html">Emission</a>
+                  <a href="#">Emission</a>
                 </h6>
               </div>
             </div>
             <div className="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
               <div className="post-content media-body">
                 <h6>
-                  <a href="category.html">Livres</a>
+                  <a href="#">Livres</a>
                 </h6>
               </div>
             </div>

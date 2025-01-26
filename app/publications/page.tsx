@@ -38,7 +38,7 @@ const page = () => {
   return (
     <>
       {/* <!-- Start Main content --> */}
-      <main>
+      <>
         <div className="archive-header pt-50 text-left">
           <div className="container">
             <h2 className="font-weight-900">Livres, articles & tribunes</h2>
@@ -251,7 +251,7 @@ const page = () => {
             />
           </div>
         </div>
-      </main>
+      </>
 
       <BottomSection />
     </>

@@ -6,10 +6,12 @@ import Signature from "@/assets/imgs/jed/blogs/signature.png";
 import Link from "next/link";
 import { getSource, subscribeEmail } from "@/services/DataService";
 import SocialLinks from "./SocialLinks";
+import Loader from "./Loader";
 
 const Footer = () => {
   const [sources, setSources] = useState([]);
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     getSource().then((res) => setSources(res.data.data));
@@ -100,30 +102,45 @@ const Footer = () => {
                     dernières mises à jour directement dans votre boîte de
                     réception.
                   </p>
-                  <form className="input-group form-subcriber mt-30 d-flex">
-                    <input
-                      type="email"
-                      className="form-control bg-white font-small"
-                      placeholder="Saisissez votre e-mail"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button
-                      className="btn bg-primary text-white"
-                      type="submit"
-                      onClick={(e) => {
+                  {isSubmitting ? (
+                    <Loader />
+                  ) : (
+                    <form
+                      className="input-group form-subcriber mt-30 d-flex"
+                      onSubmit={(e) => {
                         e.preventDefault();
+                        setIsSubmitting(true);
                         subscribeEmail({ email: email })
                           .then(() => {
                             alert("Merci de votre abonnement!");
+                            setEmail("");
+                            setIsSubmitting(false);
                           })
                           .catch(() => {
-                            alert("Email invalide ou déjà abonné");
+                            alert("Vous êtes déjà abonné(e)!");
+                            setEmail("");
+                            setIsSubmitting(false);
                           });
                       }}
                     >
-                      S'abonner
-                    </button>
-                  </form>
+                      <input
+                        type="email"
+                        className="form-control bg-white font-small"
+                        placeholder="Saisissez votre e-mail"
+                        value={email}
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      {
+                        <button
+                          className="btn bg-primary text-white"
+                          type="submit"
+                        >
+                          S'abonner
+                        </button>
+                      }
+                    </form>
+                  )}
                 </div>
               </div>
             </div>

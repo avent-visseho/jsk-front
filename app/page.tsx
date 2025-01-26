@@ -101,7 +101,7 @@ const page = () => {
   return (
     <>
       {/* <!-- Start Main content --> */}
-      <main>
+      <>
         <div className="featured-1">
           <div className="container">
             <div className="row">
@@ -121,30 +121,40 @@ const page = () => {
                   Essayiste, chroniqueur, analyste, porté par la volonté de
                   faire progresser le monde à l'échelle des petits pas.
                 </h5>
-                <form className="input-group form-subcriber mt-30 d-flex">
-                  <input
-                    type="email"
-                    className="form-control bg-white font-small"
-                    placeholder="Saisissez votre e-mail"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button
-                    className="btn bg-primary text-white"
-                    type="submit"
-                    onClick={(e) => {
+                {isSubmitting ? (
+                  <Loader />
+                ) : (
+                  <form
+                    className="input-group form-subcriber mt-30 d-flex"
+                    onSubmit={(e) => {
                       e.preventDefault();
+                      setError("");
+                      setSuccess(false);
+                      setIsSubmitting(true);
                       subscribeEmail({ email: email })
                         .then(() => {
                           alert("Merci de votre abonnement!");
+                          setIsSubmitting(false);
+                          setEmail("");
                         })
                         .catch(() => {
-                          alert("Email invalide ou déjà abonné");
+                          alert("Vous êtes déjà abonné(e)!");
+                          setIsSubmitting(false);
                         });
                     }}
                   >
-                    S'abonner
-                  </button>
-                </form>
+                    <input
+                      type="email"
+                      className="form-control bg-white font-small"
+                      placeholder="Saisissez votre e-mail"
+                      required={true}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <button className="btn bg-primary text-white" type="submit">
+                      S'abonner
+                    </button>
+                  </form>
+                )}
               </div>
               <div className="col-lg-6 text-right d-none d-lg-block">
                 <Image src={Jed} alt="" />
@@ -206,7 +216,7 @@ const page = () => {
                               <div className="entry-meta meta-0 font-small mb-10">
                                 {post?.categories?.map(
                                   (category: any, indexCat: number) => (
-                                    <a href="category.html" key={indexCat}>
+                                    <a href="#" key={indexCat}>
                                       <span className="post-cat text-info">
                                         {category?.name}
                                       </span>
@@ -251,7 +261,7 @@ const page = () => {
                               <div className="entry-meta meta-0 font-small mb-10">
                                 {posts[1]?.categories?.map(
                                   (category: any, indexCate: number) => (
-                                    <a href="category.html" key={indexCate}>
+                                    <a href="#" key={indexCate}>
                                       <span className="post-cat text-info">
                                         {category?.name}
                                       </span>
@@ -347,7 +357,7 @@ const page = () => {
                         <div className="entry-meta meta-0 font-small mb-10">
                           {post?.categories?.map(
                             (category: any, indexCat: number) => (
-                              <a href="category.html" key={indexCat}>
+                              <a href="#" key={indexCat}>
                                 <span className="post-cat text-info">
                                   {category?.name}
                                 </span>
@@ -455,7 +465,7 @@ const page = () => {
                               </div>
                               <div className="post-content p-30">
                                 {/* <div className="entry-meta meta-0 font-small mb-10">
-                                <a href="category.html">
+                                <a href="#">
                                   <span className="post-cat text-info">
                                     Podcast
                                   </span>
@@ -963,7 +973,7 @@ const page = () => {
             </form>
           </div>
         </div>
-      </main>
+      </>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
       {/*  <BottomSection /> */}

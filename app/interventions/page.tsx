@@ -35,7 +35,7 @@ const page = () => {
   return (
     <>
       {/* <!-- Start Main content --> */}
-      <main>
+      <>
         <div className="archive-header pt-50">
           <div className="container">
             <h2 className="font-weight-900">Interventions</h2>
@@ -122,7 +122,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </main>
+      </>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
       <BottomSection />
