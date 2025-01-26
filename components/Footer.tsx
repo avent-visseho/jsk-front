@@ -5,6 +5,7 @@ import Image from "next/image";
 import Signature from "@/assets/imgs/jed/blogs/signature.png";
 import Link from "next/link";
 import { getSource, subscribeEmail } from "@/services/DataService";
+import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
   const [sources, setSources] = useState([]);
@@ -33,43 +34,11 @@ const Footer = () => {
                   <p>
                     <Image className="signature" src={Signature} alt="" />
                   </p>
-                  <p>
+                  <div>
                     <strong className="color-black">Suivez-moi</strong>
                     <br />
-                  </p>
-                  <ul className="header-social-network d-inline-block list-inline color-white mb-20">
-                    <li className="list-inline-item">
-                      <a
-                        className="fb"
-                        href="#"
-                        target="_blank"
-                        title="Facebook"
-                      >
-                        <i
-                          className="fa-brands fa-facebook-f"
-                          style={{ color: "#f7f7f8" }}
-                        ></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a
-                        className="tw"
-                        href="#"
-                        target="_blank"
-                        title="Tweet now"
-                      >
-                        <i
-                          className="fa-brands fa-twitter"
-                          style={{ color: "#fff" }}
-                        ></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a className="pt" href="#" target="_blank" title="Pin it">
-                        <i className="fa-brands fa-linkedin"></i>
-                      </a>
-                    </li>
-                  </ul>
+                    <SocialLinks />
+                  </div>
                 </div>
               </div>
             </div>
@@ -109,10 +78,10 @@ const Footer = () => {
                   <h5 className="mt-5 mb-30">Sources</h5>
                 </div>
                 <div className="tagcloud mt-50">
-                  {sources?.slice(0, 10)?.map((source: any, index: number) => (
-                    <a key={index} className="tag-cloud-link" href="category.html">
+                  {sources?.slice(0, 5)?.map((source: any, index: number) => (
+                    <span key={index} className="tag-cloud-link">
                       {source?.name}
-                    </a>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -154,22 +123,6 @@ const Footer = () => {
                     >
                       S'abonner
                     </button>
-                    <label className="mt-20">
-                      <input
-                        className="mr-5"
-                        name="name"
-                        type="checkbox"
-                        value="1"
-                      />
-                      J'accepte les &nbsp;
-                      <a href="#" target="_blank">
-                        termes &nbsp;
-                      </a>
-                      et
-                      <a href="#" target="_blank">
-                        &nbsp; conditions
-                      </a>
-                    </label>
                   </form>
                 </div>
               </div>
@@ -180,7 +133,7 @@ const Footer = () => {
               © 2023 Sophonie Jed Koboude
             </p>
             <p className="float-md-right font-small text-muted">
-              par
+              Par
               <a href="" target="_blank">
                 Jsk-opinions
               </a>{" "}

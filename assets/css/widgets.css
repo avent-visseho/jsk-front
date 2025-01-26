@@ -186,11 +186,13 @@ figure .social-share:hover li:last-child,
 .post-thumb:hover .social-share{height:30px;transition-duration:0.2s;}
 .post-thumb .social-share li a{background:#007aff;}
 .post-thumb .social-share li a.fb,
-.header-social-network .list-inline-item a.fb{background:#3b5999;}
+.header-social-network .list-inline-item a.fb{background:#0866ff;}
 .post-thumb .social-share li a.tw,
-.header-social-network .list-inline-item a.tw{background:#55acee;}
+.header-social-network .list-inline-item a.tw{background:#141414;}
 .post-thumb .social-share li a.pt,
 .header-social-network .list-inline-item a.pt{background:#bd081c;}
+.post-thumb .social-share li a.in,
+.header-social-network .list-inline-item a.in{background:#0a66c2;}
 .thumb-overlay .post-thumb .social-share{right:35px;}
 
 /*More articles*/

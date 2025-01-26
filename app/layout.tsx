@@ -5,10 +5,15 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { postHistory } from "@/services/DataService";
 import Head from "next/head";
+import Loader from "@/components/Loader";
+import appleTouchIcon from "@/assets/imgs/favicon_io/apple-touch-icon.png";
+import favicon16 from "@/assets/imgs/favicon_io/favicon-16x16.png";
+import favicon32 from "@/assets/imgs/favicon_io/favicon-32x32.png";
+import favicon from "@/assets/imgs/favicon_io/favicon.ico";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,17 +37,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+  const title = "JSK Opinions - Informer, Contribuer, Transmettre";
+  const url = "https://jsk-opinions.com";
+  const description =
+    "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire.";
   useEffect(() => {
     postHistory(pathname);
   }, [pathname]);
   return (
     <html lang="en">
       <Head>
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="assets/imgs/jed/blogs/logo.png"
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta
+          name="keywords"
+          content="JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire"
         />
+        <meta property="og:title" content={title} />
+        <meta
+          property="og:description"
+          content="Chroniques et analyses par Jed Sophonie Koboude pour faire progresser le monde à petits pas."
+        />
+        <meta property="og:image" content="/assets/imgs/jed/blogs/jed.png" />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+        <meta name="robots" content="follow, index" />
+        <meta name="twitter:site" content="@koboude" />
+        <meta name="twitter:image" content={"/assets/imgs/jed/blogs/jed.png"} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+
+        <meta property="og:site_name" content="JSK Opinions" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content={"website"} />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={appleTouchIcon.src}
+        />
+        <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
+        <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
+        <meta name="msapplication-TileColor" content="#e3363e" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="canonical" href={url} />
+        <link rel="shortcut icon" href={favicon.src} />
 
         <link
           rel="stylesheet"
@@ -58,10 +100,34 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-p6U9YH4dQ5L4MItfZtWnhM1qPy/5ipPgZ3Q9s4y0mV9D8F06uY3k3Zl7/7B5L7hZ3N9h2Lh6N9G1D9bG5T2a/w=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "JSK Opinions",
+              url: "https://jsk-opinions.com",
+              description:
+                "Essayiste, chroniqueur et analyste passionné par les nouvelles technologies, l'économie et l'Afrique.",
+              sameAs: [
+                "https://www.facebook.com/...",
+                "https://www.linkedin.com/...",
+              ],
+            }),
+          }}
+        />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        {children}
+        <Suspense fallback={<Loader />}>{children}</Suspense>
         <Footer />
         {/* <!-- Vendor JS--> */}
         <Script src="/js/vendor/modernizr-3.6.0.min.js"></Script>

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jsk-opinions.com
+
+# Sitemaps
+Sitemap: https://jsk-opinions.com/sitemap.xml

@@ -1,17 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
 import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
-import Thumb2 from "@/assets/imgs/news/thumb-2.jpg";
-import Thumb3 from "@/assets/imgs/news/thumb-3.jpg";
-import Thumb4 from "@/assets/imgs/news/thumb-4.jpg";
-import Thumb6 from "@/assets/imgs/news/thumb-6.jpg";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import CultureMonde from "@/assets/imgs/jed/blogs/cultureMonde.jpg";
-import JeuneAfrique from "@/assets/imgs/jed/blogs/jeuneAfrique.jpg";
-import Fcfa from "@/assets/imgs/jed/blogs/fcfa.png";
-import New12 from "@/assets/imgs/news/news-12.jpg";
 import Eden from "@/assets/imgs/jed/blogs/eden.png";
 import {
   getBook,
@@ -24,7 +15,8 @@ import {
 } from "@/services/DataService";
 import { formatPostName, formatPublishedDate } from "@/helpers/utils";
 import Link from "next/link";
-import BottomSection from "@/components/BottomSection";
+import SocialLinks from "@/components/SocialLinks";
+import Loader from "@/components/Loader";
 
 const page = () => {
   const [nom, setNom] = useState("");
@@ -39,12 +31,13 @@ const page = () => {
   const [tribunes, setTribunes] = useState([]);
   const [interventions, setInterventions] = useState([]);
   const [posts, setPosts] = useState<any[]>([]);
-  const [tags, setTags] = useState<any[]>([]);
+  const [checked, setChecked] = useState(false);
+  if (typeof window == "undefined") {
+    return null;
+  }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    // Réinitialiser l'erreur et le succès
     setError("");
     setSuccess(false);
     setIsSubmitting(true);
@@ -52,6 +45,14 @@ const page = () => {
     // Validation basique
     if (!prenom || !nom || !email || !tel || !message) {
       setError("Veuillez remplir tous les champs.");
+      alert("Veuillez remplir tous les champs");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!checked) {
+      setError("Veuillez accepter les conditions générales d'utilisation.");
+      alert("Veuillez accepter les conditions générales d'utilisation");
       setIsSubmitting(false);
       return;
     }
@@ -64,17 +65,18 @@ const page = () => {
       message: message,
       aggreeWithTerm: true,
     })
-      .then((response) => {
+      .then(() => {
         setIsSubmitting(false);
         setNom("");
         setPrenom("");
         setEmail("");
         setTel("");
         setMessage("");
+        setChecked(false);
         setSuccess(true);
         alert("Merci pour votre message. Nous vous répondrons très bientôt");
       })
-      .catch((error) => {
+      .catch(() => {
         setIsSubmitting(false);
         setError("Une erreur est survenue. Veuillez réessayer.");
         alert("Une erreur est survenue. Veuillez réessayer.");
@@ -94,10 +96,8 @@ const page = () => {
     getTribunes().then((res) => {
       setTribunes(res.data.data);
     });
-    getCategories().then((res) => {
-      setTags(res.data.data);
-    });
   }, []);
+
   return (
     <>
       {/* <!-- Start Main content --> */}
@@ -229,9 +229,9 @@ const page = () => {
                                   {"Publié le " +
                                     formatPublishedDate(post?.publishedAt)}
                                 </span>
-                                <span className="hit-count has-dot">
+                                {/*  <span className="hit-count has-dot">
                                   {post?.readCount} lectures
-                                </span>
+                                </span> */}
                               </div>
                             </div>
                           </div>
@@ -274,9 +274,9 @@ const page = () => {
                                   {"Publié le " +
                                     formatPublishedDate(posts[1]?.publishedAt)}
                                 </span>
-                                <span className="hit-count has-dot">
+                                {/* <span className="hit-count has-dot">
                                   {post?.readCount} lectures
-                                </span>
+                                </span> */}
                               </div>
                             </div>
                           </div>
@@ -370,9 +370,9 @@ const page = () => {
                               {"Publié le " +
                                 formatPublishedDate(post?.publishedAt)}
                             </span>
-                            <span className="post-by has-dot">
+                            {/* <span className="post-by has-dot">
                               {post?.readCount} lectures
-                            </span>
+                            </span> */}
                           </div>
                         </div>
                       </div>
@@ -395,382 +395,101 @@ const page = () => {
                   </div>
                   <div className="loop-list loop-list-style-1">
                     <div className="row">
-                      <article className="mb-40">
-                        <div className="post-card-1 border-radius-10 hover-up">
-                          <div
-                            className="post-thumb thumb-overlay img-hover-slide position-relative"
-                            style={{
-                              backgroundImage: `url(${CultureMonde.src})`,
-                            }}
-                          >
-                            <a className="img-link" href="details"></a>
-                            <ul className="social-share">
-                              <li>
-                                <a href="#">
-                                  <i
-                                    className="fa-solid fa-share-nodes"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="fb"
-                                  href="#"
-                                  title="Share on Facebook"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fa-brands fa-facebook-f"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="tw"
-                                  href="#"
-                                  target="_blank"
-                                  title="Tweet now"
-                                >
-                                  <i
-                                    className="fa-brands fa-twitter"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="pt"
-                                  href="#"
-                                  target="_blank"
-                                  title="Pin it"
-                                >
-                                  <i className="fa-brands fa-linkedin-in"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="post-content p-30">
-                            <div className="entry-meta meta-0 font-small mb-10">
-                              <a href="category.html">
-                                <span className="post-cat text-info">
-                                  Podcast
-                                </span>
-                              </a>
-                            </div>
-                            <div className="d-flex post-card-content">
-                              <h5 className="post-title mb-20 font-weight-900">
-                                <a href="details">
-                                  Révolution numérique : s’émanciper par
-                                  l’innovation
-                                </a>
-                              </h5>
-                              <div className="post-excerpt mb-25 font-small text-muted">
-                                <p>
-                                  Ces dernières années, le continent africain a
-                                  connu un véritable boom de l’usage du
-                                  numérique. On assiste même selon certains
-                                  experts à un processus “d’innovation inversée”
-                                  où le continent invente de nouveaux usages
-                                  avant diffusion en dehors du continent. Avec
-                                  Sophonie Koboudé, Essayiste. Séverin Yao
-                                  Kouamé, Sociologue, enseignant-chercheur à
-                                  l'université de Bouaké en Côte d'Ivoire et
-                                  coordonnateur de l'Initiative de Dialogue et
-                                  de Recherche-Action pour la Paix en Côte
-                                  d'Ivoire. Marine Al Dahdah, Sociologue et
-                                  chargée de recherche au CNRS au Centre d’étude
-                                  des mouvements sociaux.
-                                </p>
+                      {tribunes.length > 0 &&
+                        tribunes?.slice(0, 3).map((tribune: any, i: number) => (
+                          <article className="mb-40" key={i}>
+                            <div className="post-card-1 border-radius-10 hover-up">
+                              <div
+                                className="post-thumb thumb-overlay img-hover-slide position-relative"
+                                style={{
+                                  backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${tribune.coverImage})`,
+                                }}
+                              >
+                                <a className="img-link" href="details"></a>
+                                <ul className="social-share">
+                                  <li>
+                                    <a href="#">
+                                      <i
+                                        className="fa-solid fa-share-nodes"
+                                        style={{ color: "#fff" }}
+                                      ></i>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      className="fb"
+                                      href="#"
+                                      title="Share on Facebook"
+                                      target="_blank"
+                                    >
+                                      <i
+                                        className="fa-brands fa-facebook-f"
+                                        style={{ color: "#fff" }}
+                                      ></i>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      className="tw"
+                                      href="#"
+                                      target="_blank"
+                                      title="Tweet now"
+                                    >
+                                      <i
+                                        className="fa-brands fa-twitter"
+                                        style={{ color: "#fff" }}
+                                      ></i>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      className="pt"
+                                      href="#"
+                                      target="_blank"
+                                      title="Pin it"
+                                    >
+                                      <i className="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                  </li>
+                                </ul>
                               </div>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on text-primary">
-                                  <strong>▶ Ecouter l'épisode</strong>
-                                </span>
+                              <div className="post-content p-30">
+                                {/* <div className="entry-meta meta-0 font-small mb-10">
+                                <a href="category.html">
+                                  <span className="post-cat text-info">
+                                    Podcast
+                                  </span>
+                                </a>
+                              </div> */}
+                                <div className="d-flex post-card-content">
+                                  <h5 className="post-title mb-20 font-weight-900">
+                                    <a href={tribune?.link} target="_blank">
+                                      {tribune.title}
+                                    </a>
+                                  </h5>
+                                  <div className="post-excerpt mb-25 font-small text-muted">
+                                    <p
+                                      //className="font-medium text-muted"
+                                      dangerouslySetInnerHTML={{
+                                        __html: tribune?.description,
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                    <span
+                                      className="post-on text-primary"
+                                      onClick={() => {
+                                        window.open(tribune?.link, "_blank");
+                                      }}
+                                    >
+                                      <strong>Tout lire</strong>
+                                    </span>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article className="mb-40 animated">
-                        <div className="post-card-1 border-radius-10 hover-up">
-                          <div
-                            className="post-thumb thumb-overlay img-hover-slide position-relative"
-                            style={{
-                              backgroundImage: `url(${JeuneAfrique.src})`,
-                            }}
-                          >
-                            <a className="img-link" href="details"></a>
-                            <ul className="social-share">
-                              <li>
-                                <a href="#">
-                                  <i
-                                    className="fa-solid fa-share-nodes"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="fb"
-                                  href="#"
-                                  title="Share on Facebook"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fa-brands fa-facebook-f"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="tw"
-                                  href="#"
-                                  target="_blank"
-                                  title="Tweet now"
-                                >
-                                  <i
-                                    className="fa-brands fa-twitter"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="pt"
-                                  href="#"
-                                  target="_blank"
-                                  title="Pin it"
-                                >
-                                  <i className="fa-brands fa-linkedin-in"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="post-content p-30">
-                            <div className="entry-meta meta-0 font-small mb-10">
-                              <a href="category.html">
-                                <span className="post-cat">Tribune</span>
-                              </a>
-                            </div>
-                            <div className="d-flex post-card-content">
-                              <h5 className="post-title mb-20 font-weight-900">
-                                <a href="details">
-                                  Jeune Afrique : La mise en œuvre de la Zleca
-                                  est la vraie réponse à la crise
-                                </a>
-                              </h5>
-                              <div className="post-excerpt mb-25 font-small text-muted">
-                                <p>
-                                  Plutôt que de recourir à des plans de relance
-                                  basés sur la dette, c’est en misant sur le
-                                  libre-échange que l’Afrique pourrait renouer
-                                  avec la croissance, estime Sophonie Koboudé.
-                                  Il ne fait guère de doute que « ça » va mal. «
-                                  Ça », quoi ? La situation sanitaro-économique,
-                                  ou plus nommément, la crise de la Covid-19.
-                                  L’économie mondiale a été forcée à l’arrêt, et
-                                  les économies africaines n’ont pas été
-                                  épargnées : selon la Banque africaine de
-                                  développement (BAD), le PIB réel en Afrique,
-                                  d’après le scénario de base qui suppose un
-                                  impact considérable du virus, mais sur une
-                                  courte durée, devrait se contracter de 1,7 %
-                                  en 2020, soit une baisse de 5,6 points de
-                                  pourcentage par rapport aux projections de
-                                  janvier 2020. Cette contraction de l’économie
-                                  pourrait coûter à l’Afrique des pertes de
-                                  l’ordre de 145,5 milliards de dollars.....
-                                </p>
-                              </div>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on text-primary">
-                                  <strong>▶ Lire la tribune </strong>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article className="mb-40">
-                        <div className="post-card-1 border-radius-10 hover-up">
-                          <div
-                            className="post-thumb thumb-overlay img-hover-slide position-relative"
-                            style={{ backgroundImage: `url(${Fcfa.src})` }}
-                          >
-                            <a className="img-link" href="details"></a>
-                            <span className="top-right-icon bg-secondary">
-                              <i className="elegant-icon icon_heart_alt"></i>
-                            </span>
-                            <ul className="social-share">
-                              <li>
-                                <a href="#">
-                                  <i
-                                    className="fa-solid fa-share-nodes"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="fb"
-                                  href="#"
-                                  title="Share on Facebook"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fa-brands fa-facebook-f"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="tw"
-                                  href="#"
-                                  target="_blank"
-                                  title="Tweet now"
-                                >
-                                  <i
-                                    className="fa-brands fa-twitter"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="pt"
-                                  href="#"
-                                  target="_blank"
-                                  title="Pin it"
-                                >
-                                  <i className="fa-brands fa-linkedin-in"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="post-content p-30">
-                            <div className="entry-meta meta-0 font-small mb-10">
-                              <a href="category.html">
-                                <span className="post-cat text-success">
-                                  Tribune
-                                </span>
-                              </a>
-                            </div>
-                            <div className="d-flex post-card-content">
-                              <h5 className="post-title mb-20 font-weight-900">
-                                <a href="details">
-                                  Franc CFA, ce que le Christ a à nous dire
-                                </a>
-                              </h5>
-                              <div className="post-excerpt mb-25 font-small text-muted">
-                                <p>
-                                  "Au prince il a fallu conquérir la monnaie
-                                  comme il a conquis les provinces qui ont
-                                  agrandi son royaume ; il en a surveillé les
-                                  frappes, fixé la valeur, contrôlé la
-                                  diffusion. La monnaie a fait le roi."
-                                </p>
-                              </div>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on text-primary">
-                                  <strong>▶ Lire l'intégralité</strong>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article className="mb-40">
-                        <div className="post-card-1 border-radius-10 hover-up">
-                          <div
-                            className="post-thumb thumb-overlay img-hover-slide position-relative"
-                            style={{ backgroundImage: `url(${New12.src})` }}
-                          >
-                            <a className="img-link" href="details"></a>
-                            <ul className="social-share">
-                              <li>
-                                <a href="#">
-                                  <i
-                                    className="fa-solid fa-share-nodes"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="fb"
-                                  href="#"
-                                  title="Share on Facebook"
-                                  target="_blank"
-                                >
-                                  <i
-                                    className="fa-brands fa-facebook-f"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="tw"
-                                  href="#"
-                                  target="_blank"
-                                  title="Tweet now"
-                                >
-                                  <i
-                                    className="fa-brands fa-twitter"
-                                    style={{ color: "#fff" }}
-                                  ></i>
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="pt"
-                                  href="#"
-                                  target="_blank"
-                                  title="Pin it"
-                                >
-                                  <i className="fa-brands fa-linkedin-in"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="post-content p-30">
-                            <div className="entry-meta meta-0 font-small mb-10">
-                              <a href="category.html">
-                                <span className="post-cat text-danger">
-                                  Modération
-                                </span>
-                              </a>
-                            </div>
-                            <div className="d-flex post-card-content">
-                              <h5 className="post-title mb-20 font-weight-900">
-                                <a href="details">
-                                  L’innovation numérique en Afrique : enjeux et
-                                  dynamiques
-                                </a>
-                              </h5>
-                              <div className="post-excerpt mb-25 font-small text-muted">
-                                <p>
-                                  Conférence, initiée et organisée par le Réseau
-                                  Francophone des FabLabs d’Afrique de l’Ouest
-                                  (ReFFAO), présentant le tableau dynamique et
-                                  assez particulier de l’innovation numérique en
-                                  Afrique - propulsé notamment par ces espaces
-                                  créatifs que sont les FabLabs -....
-                                </p>
-                              </div>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on text-primary">
-                                  <strong>▶ Lire l'intégralité</strong>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
+                          </article>
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -783,11 +502,6 @@ const page = () => {
                       className="about-author-img mb-25"
                       alt=""
                     />
-                    {/* <img
-                    className="about-author-img mb-25"
-                    src="assets/imgs/jed/blogs/jed.png"
-                    alt=""
-                  /> */}
                     <h5 className="mb-20">Sophonie Jed Koboude</h5>
                     <p className="text-muted">
                       <span
@@ -803,146 +517,59 @@ const page = () => {
                       deux essais et intervient régulièrement au travers de
                       chroniques écrites ou d’émissions télévisées.
                     </p>
-                    <strong>Suivez-moi : </strong>
-                    <ul className="header-social-network d-inline-block list-inline color-white mb-20">
-                      <li className="list-inline-item">
-                        <a
-                          className="fb"
-                          href="#"
-                          target="_blank"
-                          title="Facebook"
-                        >
-                          <i
-                            className="fa-solid fa-facebook-f"
-                            style={{ color: "#fff" }}
-                          ></i>
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a
-                          className="tw"
-                          href="#"
-                          target="_blank"
-                          title="Tweet now"
-                        >
-                          <i
-                            className="fa-brands fa-twitter"
-                            style={{ color: "#fff" }}
-                          ></i>
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a
-                          className="pt"
-                          href="#"
-                          target="_blank"
-                          title="Pin it"
-                        >
-                          <i className="fa-brands fa-linkedin-in"></i>
-                        </a>
-                      </li>
-                    </ul>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        gap: "15px",
+                      }}
+                    >
+                      <strong>Suivez-moi : </strong>
+                      <SocialLinks />
+                    </div>
                   </div>
                   <div className="sidebar-widget widget-latest-posts mb-50 wow fadeInUp animated">
                     <div className="widget-header-1 position-relative mb-30">
-                      <h5 className="mt-5 mb-30">Les plus populaires</h5>
+                      <h5 className="mt-5 mb-30">Mes dernières oeuvres</h5>
                     </div>
                     <div className="post-block-list post-module-1">
                       <ul className="list-post">
-                        <li className="mb-30 wow fadeInUp animated">
-                          <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
-                            <div className="post-content media-body">
-                              <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                <a href="details">
-                                  Spending Some Quality Time with Kids? It’s
-                                  Possible
+                        {books.map((book: any, index: number) => (
+                          <li
+                            className="mb-30 wow fadeInUp animated"
+                            key={index}
+                          >
+                            <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
+                              <div className="post-content media-body">
+                                <h6 className="post-title mb-15 text-limit-2-row font-medium">
+                                  <a href="details">{book.title}</a>
+                                </h6>
+
+                                <button
+                                  className="btn btn-radius bg-dark text-white font-small box-shadow"
+                                  onClick={() => {
+                                    window.open(book?.link, "_blank");
+                                  }}
+                                >
+                                  Acheter ce livre
+                                </button>
+                              </div>
+                              <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
+                                <a className="color-white" href="details">
+                                  <Image
+                                    src={`${process.env.NEXT_PUBLIC_FILE_URL}/${book.coverImage}`}
+                                    alt={`book-${index}`}
+                                    width={70}
+                                    height={70}
+                                    objectFit="contain"
+                                  />
                                 </a>
-                              </h6>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on">05 August</span>
-                                <span className="post-by has-dot">
-                                  150 views
-                                </span>
                               </div>
                             </div>
-                            <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
-                              <a className="color-white" href="details">
-                                <Image src={Thumb6} alt="" />
-                                {/* <img src="assets/imgs/news/thumb-6.jpg" alt="" /> */}
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="mb-30 wow fadeInUp animated">
-                          <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
-                            <div className="post-content media-body">
-                              <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                <a href="details">
-                                  Relationship Podcasts are Having “That” Talk
-                                </a>
-                              </h6>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on">12 August</span>
-                                <span className="post-by has-dot">
-                                  6k views
-                                </span>
-                              </div>
-                            </div>
-                            <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
-                              <a className="color-white" href="details">
-                                <Image src={Blog1} alt="" />
-                                {/* <img src="assets/imgs/news/thumb-7.jpg" alt="" /> */}
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="mb-30 wow fadeInUp animated">
-                          <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
-                            <div className="post-content media-body">
-                              <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                <a href="details">
-                                  Here’s How to Get the Best Sleep at Night
-                                </a>
-                              </h6>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on">15 August</span>
-                                <span className="post-by has-dot">
-                                  16k views
-                                </span>
-                              </div>
-                            </div>
-                            <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
-                              <a className="color-white" href="details">
-                                <Image src={Thumb3} alt="" />
-                                {/*  <img src="assets/imgs/news/thumb-2.jpg" alt="" /> */}
-                              </a>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="wow fadeInUp animated">
-                          <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
-                            <div className="post-content media-body">
-                              <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                <a href="details">
-                                  America’s Governors Get Tested for a Virus
-                                  That Is Testing Them
-                                </a>
-                              </h6>
-                              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                <span className="post-on">12 August</span>
-                                <span className="post-by has-dot">
-                                  3k views
-                                </span>
-                              </div>
-                            </div>
-                            <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
-                              <a className="color-white" href="details">
-                                <Image src={Thumb3} alt="" />
-                                {/* <img src="assets/imgs/news/thumb-3.jpg" alt="" /> */}
-                              </a>
-                            </div>
-                          </div>
-                        </li>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -1028,10 +655,12 @@ const page = () => {
                             personnel, dans une dynamique harmonieuse et pour le
                             bien commun.
                           </p>
-                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
-                          onClick={() => {
-                            window.open("/#contact", "_self");
-                          }}>
+                          <button
+                            className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
+                            onClick={() => {
+                              window.open("/#contact", "_self");
+                            }}
+                          >
                             Faire un don
                           </button>
                         </div>
@@ -1107,10 +736,15 @@ const page = () => {
                             santé à l'orphelinat pour contribuer au bien-être
                             des orphelins.
                           </p>
-                          <button className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
-                          onClick={() => {
-                            window.open("https://www.eden-ong.org/soutien", "_blank");
-                          }}>
+                          <button
+                            className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
+                            onClick={() => {
+                              window.open(
+                                "https://www.eden-ong.org/soutien",
+                                "_blank"
+                              );
+                            }}
+                          >
                             Faire un don
                           </button>
                         </div>
@@ -1187,7 +821,10 @@ const page = () => {
                           <button
                             className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
                             onClick={() => {
-                              window.open("https://ecole229.bj/partenaires/", "_blank");
+                              window.open(
+                                "https://ecole229.bj/partenaires/",
+                                "_blank"
+                              );
                             }}
                           >
                             Faire un don
@@ -1201,11 +838,135 @@ const page = () => {
             </div>
           </div>
         </div>
+        <div id="contact" className="container single-content mb-100">
+          <div className="entry-wraper mt-50">
+            <h1 className="mt-30">Créer des opportunités</h1>
+            <p>
+              Discussions, échanges, besoin d'accompagnement ou d'intervenant,
+              chaque message trouvera écho !
+            </p>
+            <hr className="wp-block-separator is-style-wide" />
+            <form
+              className="form-contact comment_form"
+              onSubmit={handleSubmit}
+              id="commentForm"
+            >
+              <div className="row">
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="name"
+                      id="name"
+                      type="text"
+                      placeholder="Nom"
+                      required
+                      value={nom}
+                      onChange={(e) => setNom(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="prenom"
+                      id="prenom"
+                      type="text"
+                      placeholder="Prenom"
+                      required
+                      value={prenom}
+                      onChange={(e) => setPrenom(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="email"
+                      id="email"
+                      type="email"
+                      placeholder="E-mail"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      name="tel"
+                      id="tel"
+                      type="text"
+                      placeholder="Téléphone"
+                      required
+                      value={tel}
+                      onChange={(e) => setTel(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-group">
+                    <textarea
+                      className="form-control w-100"
+                      name="comment"
+                      id="comment"
+                      placeholder="Message"
+                      required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="col-12 mb-20">
+                  <div className="form-row">
+                    <label className="form-check">
+                      <input
+                        className="mr-5"
+                        name="name"
+                        type="checkbox"
+                        value={checked.toString()}
+                        onChange={(e) => {
+                          setChecked(e.target.checked);
+                        }}
+                      />
+                      J'accepte les &nbsp;
+                      <a href="#" target="_blank">
+                        termes &nbsp;
+                      </a>
+                      et
+                      <a href="#" target="_blank">
+                        &nbsp; conditions necessaires
+                      </a>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="form-group">
+                {isSubmitting ? (
+                  <Loader />
+                ) : (
+                  <button
+                    type="submit"
+                    className="button button-contactForm"
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    Soumettre votre message
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+        </div>
       </main>
       {/*  <!-- End Main content --> */}
       {/*    <!--site-bottom--> */}
-      <BottomSection />
-
+      {/*  <BottomSection /> */}
     </>
   );
 };

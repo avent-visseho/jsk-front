@@ -40,7 +40,7 @@ const BottomSection = () => {
               </div>
               <div className="post-block-list post-module-1">
                 <ul className="list-post">
-                  {tribunes?.slice(0, 5)?.map((tribune: any, index: number) => (
+                  {tribunes?.slice(0, 3)?.map((tribune: any, index: number) => (
                     <li className="mb-30" key={index}>
                       <div className="d-flex hover-up-2 transition-normal">
                         <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
@@ -83,20 +83,20 @@ const BottomSection = () => {
               <div className="post-block-list post-module-1">
                 <ul className="list-post">
                   {interventions
-                    ?.slice(0, 5)
+                    ?.slice(0, 3)
                     ?.map((intervention: any, index: number) => (
                       <li className="mb-30" key={index}>
                         <div className="d-flex hover-up-2 transition-normal">
-                          <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                          {/* <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
                             <div className="color-white">
                               <Image
                                 src={intervention?.imageUrl}
-                                alt={intervention?.title}
+                                alt={"Image"}
                                 width={90}
                                 height={80}
                               />
                             </div>
-                          </div>
+                          </div> */}
                           <div className="post-content media-body">
                             <h6 className="post-title mb-15 text-limit-2-row font-medium">
                               <a href={intervention?.link} target="_blank">
@@ -137,7 +137,7 @@ const BottomSection = () => {
               </div>
               <div className="post-block-list post-module-1">
                 <ul className="list-post">
-                  {books?.slice(0, 5)?.map((book: any, index: number) => (
+                  {books?.slice(0, 3)?.map((book: any, index: number) => (
                     <li className="mb-30" key={index}>
                       <div className="d-flex hover-up-2 transition-normal">
                         <div className="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
