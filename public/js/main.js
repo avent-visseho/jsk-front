@@ -19,7 +19,7 @@
   };
 
   // Off canvas sidebar
-  var OffCanvas = function () {
+/*   var OffCanvas = function () {
     $("#off-canvas-toggle").on("click", function () {
       $("body").toggleClass("canvas-opened");
     });
@@ -30,19 +30,19 @@
     $(".off-canvas-close").on("click", function () {
       $("body").removeClass("canvas-opened");
     });
-  };
+  }; */
 
-  // Search form
+   // Search form
   var openSearchForm = function () {
     $("button.search-icon").on("click", function () {
-      $("body").toggleClass("open-search-form");
-      $(".mega-menu-item").removeClass("open");
+      //$("body").toggleClass("open-search-form");
+     // $(".mega-menu-item").removeClass("open");
       $("html, body").animate({ scrollTop: 0 }, "slow");
     });
-    $(".search-close").on("click", function () {
-      $("body").removeClass("open-search-form");
-    });
-  };
+   /*  $(".search-close").on("click", function () {
+     $("body").removeClass("open-search-form");
+    }); */
+  }; 
 
   // Mobile menu
   var mobileMenu = function () {
@@ -172,7 +172,7 @@
     });
   };
 
-  var typeWriter = function () {
+/*   var typeWriter = function () {
     var TxtType = function (el, toRotate, period) {
       this.toRotate = toRotate;
       this.el = el;
@@ -223,15 +223,15 @@
         ".typewrite > .wrap { border-right: 0.05em solid #5869DA}";
       document.body.appendChild(css);
     };
-  };
+  }; */
 
   // Nice Select
-  var niceSelectBox = function () {
+/*   var niceSelectBox = function () {
     var nice_Select = $("select");
     if (nice_Select.length) {
       nice_Select.niceSelect();
     }
-  };
+  }; */
 
   //Header sticky
   var headerSticky = function () {
@@ -421,7 +421,7 @@
 
   //Load functions
   $(document).ready(function () {
-    openSearchForm();
+//    openSearchForm();
     OffCanvas();
     customScrollbar();
     magPopup();
@@ -431,12 +431,12 @@
     customSlickSlider();
     megaMenu();
     mobileMenu();
-    typeWriter();
-    WidgetSubMenu();
+    //typeWriter();
+    //WidgetSubMenu();
     scrollProgress();
     masonryGrid();
-    niceSelectBox();
-    moreArticles();
-    VSticker();
+    //niceSelectBox();
+    //moreArticles();
+    //VSticker();
   });
 })(jQuery);

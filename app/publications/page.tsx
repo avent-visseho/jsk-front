@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  fullSearch,
-  getHeadlined,
-} from "@/services/DataService";
+import { fullSearch, getHeadlined } from "@/services/DataService";
 import BottomSection from "@/components/BottomSection";
 import Pagination from "@/components/Pagination";
 import { useSearchParams } from "next/navigation";
@@ -54,6 +51,7 @@ const page = () => {
                     <article
                       className="col-lg-4 col-md-6 mb-30 wow fadeInUp animated"
                       data-wow-delay="0.2s"
+                      key={head.id}
                     >
                       <div className="post-card-1 border-radius-10 hover-up h-100">
                         <div
@@ -183,14 +181,30 @@ const page = () => {
                   </div>
                 </article>
               ))}
+              {books.length === 0 && (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  Aucun livre trouvé
+                </div>
+              )}
             </div>
-            <Pagination
-              total={bookTotal}
-              currentPage={bookPage}
-              onPageChange={(page) => {
-                setBookPage(page);
-              }}
-            />
+            {books?.length > 0 && (
+              <Pagination
+                total={bookTotal}
+                currentPage={bookPage}
+                onPageChange={(page) => {
+                  setBookPage(page);
+                }}
+              />
+            )}
             <div className="mb-30">
               <span className="text-primary font-weight-900">
                 Tous les articles & tribunes
@@ -241,14 +255,30 @@ const page = () => {
                   </div>
                 </article>
               ))}
+              {tribunes.length === 0 && (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  Aucun article trouvé
+                </div>
+              )}
             </div>
-            <Pagination
-              total={tribunesTotal}
-              currentPage={tribunesPage}
-              onPageChange={(page) => {
-                setTribunesPage(page);
-              }}
-            />
+            {tribunes?.length > 0 && (
+              <Pagination
+                total={tribunesTotal}
+                currentPage={tribunesPage}
+                onPageChange={(page) => {
+                  setTribunesPage(page);
+                }}
+              />
+            )}
           </div>
         </div>
       </>

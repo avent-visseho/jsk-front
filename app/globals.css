@@ -113,7 +113,10 @@
   color: #333;
 }
 
-.filter-group select,
+.multiSelectContainer input {
+  padding: 0 !important;
+}
+
 .filter-group input {
   padding: 8px;
   border: 1px solid #e0e0e0;
@@ -143,17 +146,28 @@
 }
 
 .btn-reset:hover {
-  color: #333;
+  color: #10243f;
 }
 
 .btn-apply {
-  background: #0066ff;
+  background: var(--color-primary);
   border: none;
   color: white;
 }
 
 .btn-apply:hover {
-  background: #0052cc;
+  background: var(--color-primary);
+}
+
+.searchBox {
+  border: none;
+  min-height: 25px;
+  font-size: 10px;
+}
+.searchWrapper {
+  border: none;
+  font-size: 10px;
+  min-height: 30px;
 }
 
 @media (max-width: 768px) {
@@ -168,9 +182,5 @@
 
   .filters-actions {
     flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
   }
 }

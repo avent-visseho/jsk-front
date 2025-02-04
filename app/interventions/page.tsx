@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import {
-  fullSearch
-} from "@/services/DataService";
+import { fullSearch } from "@/services/DataService";
 import { getEmbedUrl } from "@/helpers/utils";
 import BottomSection from "@/components/BottomSection";
 import Pagination from "@/components/Pagination";
@@ -50,6 +48,19 @@ const page = () => {
             <div className="loop-grid mb-30">
               {loading ? (
                 <Loader />
+              ) : interventions.length === 0 ? (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  Aucune intervention trouvée
+                </div>
               ) : (
                 <div className="row">
                   {interventions?.map((interv: any, index) => (
@@ -112,13 +123,15 @@ const page = () => {
                   ))}
                 </div>
               )}
-              <Pagination
-                total={total}
-                currentPage={page}
-                onPageChange={(page) => {
-                  setPage(page);
-                }}
-              />
+              {interventions?.length > 0 && (
+                <Pagination
+                  total={total}
+                  currentPage={page}
+                  onPageChange={(page) => {
+                    setPage(page);
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>

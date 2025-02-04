@@ -20,6 +20,8 @@ const Header = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSearchOpen(false);
+    const body = document.querySelector('body');
+    body?.classList.remove("open-search-form");
 
     // Redirige sur la page de recherche
     router.replace(`${pathname}?q=${searchQuery}`);
@@ -57,9 +59,8 @@ const Header = () => {
                     <button
                       className="search-icon d-none d-md-inline"
                       onClick={() => {
-                        console.log("====================================");
-                        console.log(isSearchOpen);
-                        console.log("====================================");
+                        const body = document.querySelector("body");
+                        body?.classList.toggle("open-search-form");
                         setIsSearchOpen((val) => !val);
                       }}
                     >
@@ -186,7 +187,7 @@ const Header = () => {
         </div>
       </header>
       {/*  <!--Start search form--> */}
-      {isSearchOpen === true && (
+      {isSearchOpen && (
         <div className="main-search-form">
           <div className="container">
             <div className="pt-50 pb-50">

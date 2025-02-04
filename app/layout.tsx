@@ -125,7 +125,7 @@ export default function RootLayout({
           }}
         />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} open-search-fojrm`}>
         <Header />
         <Suspense fallback={<Loader />}>
           <main style={{ 

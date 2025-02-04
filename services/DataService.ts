@@ -59,9 +59,14 @@ export const subscribeEmail = (data: { email: string }) => {
 export const searchPost = (
   query?: string,
   page: number = 1,
-  limit: number = 10
+  limit: number = 10,
+  dateFrom: string = "",
+  dateTo: string = "",
+  categories: string = ""
 ) => {
-  return axios.get(`/post/search?q=${query}&page=${page}&limit=${limit}`);
+  return axios.get(
+    `/post/search?q=${query}&page=${page}&limit=${limit}&dateFrom=${dateFrom}&dateTo=${dateTo}&categories=${categories}`
+  );
 };
 export const postContact = (data: any) => {
   return axios.post(`/contact`, data);
@@ -91,7 +96,7 @@ export const getHeadlined = async () => {
   });
   const tribuneResponse = await axios.get("/tribune/headlined/get");
   tribuneResponse.data.data.forEach((element: any) => {
-    data.push({...element, type: "tribune" });
+    data.push({ ...element, type: "tribune" });
   });
   return data;
 };
