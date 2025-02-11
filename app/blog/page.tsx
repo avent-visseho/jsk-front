@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { fullSearch, getCategories, searchPost } from "@/services/DataService";
+import {  getCategories, searchPost } from "@/services/DataService";
 import { formatPostName, formatPublishedDate } from "@/helpers/utils";
 import Link from "next/link";
 import BottomSection from "@/components/BottomSection";
@@ -38,7 +38,7 @@ const page = () => {
     });
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = (e:any) => {
     e.preventDefault();
     setSearch(!search);
     // Logique de recherche à implémenter

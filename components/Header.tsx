@@ -52,8 +52,8 @@ const Header = () => {
                 </a>
               </div>
               <div className="col-md-9 col-xs-6 text-right header-top-right">
-                {(pathname === "/publications" ||
-                  pathname === "/interventions") && (
+                {(pathname === "/publications/" ||
+                  pathname === "/interventions/") && (
                   <>
                     <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
                     <button
@@ -100,10 +100,16 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#author">À propos</Link>
+                    <Link
+                    className={
+                      pathname == "/#author" ? "text-primary font-weight-bold" : ""
+                    } href="/#author">À propos</Link>
                   </li>
                   <li>
-                    <Link href="/#contact">Contact</Link>
+                    <Link 
+                    className={
+                      pathname == "/#contact" ? "text-primary font-weight-bold" : ""
+                    } href="/#contact">Contact</Link>
                   </li>
                   <li
                     className={
@@ -113,7 +119,7 @@ const Header = () => {
                     <Link
                       href="/publications"
                       className={
-                        pathname == "/publications"
+                        pathname == "/publications/"
                           ? "text-primary font-weight-bold"
                           : ""
                       }
@@ -125,7 +131,7 @@ const Header = () => {
                     <Link
                       href="/interventions"
                       className={
-                        pathname == "/interventions"
+                        pathname == "/interventions/"
                           ? "text-primary font-weight-bold"
                           : ""
                       }
@@ -137,7 +143,7 @@ const Header = () => {
                     <Link
                       href="/blog"
                       className={
-                        pathname == "/blog"
+                        pathname == "/blog/"
                           ? "text-primary font-weight-bold"
                           : ""
                       }
