@@ -41,8 +41,12 @@ export const generateMetadata = (
         { url: metadataConfig.image, width: 256, height: 256, alt: "favicon" },
       ],
     },
+    author: "Jed Sophonie Koboude", 
+    email: metadataConfig.email,   
+    canonical: metadataConfig.url,
     contact: {
       email: metadataConfig.email,
     },
+    robotsMeta: "index, follow",
   };
 };
