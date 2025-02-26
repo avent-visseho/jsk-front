@@ -2,12 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import { useSearchParams } from "next/navigation";
-import { getPost, getSinglePost, readPost } from "@/services/DataService";
+import { usePathname, useSearchParams } from "next/navigation";
+import {
+  getPost,
+  getSinglePost,
+  postHistory,
+  readPost,
+} from "@/services/DataService";
 import { formatPublishedDate } from "@/helpers/utils";
 import Loader from "@/components/Loader";
 import SocialLinks from "@/components/SocialLinks";
-
 
 const BlogDetail = () => {
   const [post, setPost] = useState<any>(null);
@@ -15,8 +19,11 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const id = searchParams.get("q") ?? "";
+  const pathname = usePathname();
 
   useEffect(() => {
+    postHistory(pathname);
+
     setLoading(true);
     getSinglePost(id)
       .then((res) => {
@@ -32,7 +39,7 @@ const BlogDetail = () => {
     getPost().then((res) => {
       setPosts(res.data.data);
     });
-  }, [id]);
+  }, [id, pathname]);
   return (
     <div>
       <main className="bg-grey pt-50 pb-50">
@@ -174,7 +181,9 @@ const BlogDetail = () => {
                                     <a href="details">{data.title}</a>
                                   </h6>
                                   <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                    <span className="post-on">{formatPublishedDate(data?.publishedAt)}</span>
+                                    <span className="post-on">
+                                      {formatPublishedDate(data?.publishedAt)}
+                                    </span>
                                     {/* <span className="post-by has-dot">
                                       150 views
                                     </span> */}

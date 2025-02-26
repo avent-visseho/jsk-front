@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import {  getCategories, searchPost } from "@/services/DataService";
+import { getCategories, postHistory, searchPost } from "@/services/DataService";
 import { formatPostName, formatPublishedDate } from "@/helpers/utils";
 import Link from "next/link";
 import BottomSection from "@/components/BottomSection";
-import { useSearchParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import Loader from "@/components/Loader";
 import Pagination from "@/components/Pagination";
 import Multiselect from "multiselect-react-dropdown";
@@ -27,6 +27,7 @@ const page = () => {
     category: "",
   });
   const [search, setSearch] = useState(true);
+  const pathname = usePathname();
 
   const handleReset = () => {
     setSearchQuery({
@@ -38,7 +39,7 @@ const page = () => {
     });
   };
 
-  const handleSearch = (e:any) => {
+  const handleSearch = (e: any) => {
     e.preventDefault();
     setSearch(!search);
     // Logique de recherche à implémenter
@@ -46,6 +47,7 @@ const page = () => {
   };
 
   useEffect(() => {
+    postHistory(pathname);
     setLoading(true);
     searchPost(
       searchQuery.query,
@@ -68,7 +70,7 @@ const page = () => {
     getCategories().then((res) => {
       setTags(res.data.data);
     });
-  }, [q, page, searchQuery.query, search]);
+  }, [q, page, searchQuery.query, search, pathname]);
 
   return (
     <>

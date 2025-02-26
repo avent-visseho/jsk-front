@@ -2,21 +2,25 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import { fullSearch } from "@/services/DataService";
+import { fullSearch, postHistory } from "@/services/DataService";
 import { getEmbedUrl } from "@/helpers/utils";
 import BottomSection from "@/components/BottomSection";
 import Pagination from "@/components/Pagination";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Loader from "@/components/Loader";
+
 const page = () => {
   const [interventions, setInterventions] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const q = searchParams.get("q") ?? "";
   useEffect(() => {
+    postHistory(pathname);
+
     setLoading(true);
     fullSearch("intervention", q, page)
       .then((res) => {
@@ -29,7 +33,7 @@ const page = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [page, q]);
+  }, [page, q, pathname]);
   return (
     <>
       {/* <!-- Start Main content --> */}

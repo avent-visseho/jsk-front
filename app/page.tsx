@@ -11,12 +11,15 @@ import {
   getPost,
   getTribunes,
   postContact,
+  postHistory,
   subscribeEmail,
 } from "@/services/DataService";
 import { formatPostName, formatPublishedDate } from "@/helpers/utils";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
 import Loader from "@/components/Loader";
+import { generateMetadata } from "@/utils/metadata";
+import { usePathname } from "next/navigation";
 
 const page = () => {
   const [nom, setNom] = useState("");
@@ -32,6 +35,7 @@ const page = () => {
   const [interventions, setInterventions] = useState([]);
   const [posts, setPosts] = useState<any[]>([]);
   const [checked, setChecked] = useState(false);
+  const pathname = usePathname();
   if (typeof window == "undefined") {
     return null;
   }
@@ -84,6 +88,8 @@ const page = () => {
   };
 
   useEffect(() => {
+    postHistory(pathname);
+
     getBook().then((res) => {
       setBooks(res.data.data);
     });
@@ -96,7 +102,7 @@ const page = () => {
     getTribunes().then((res) => {
       setTribunes(res.data.data);
     });
-  }, []);
+  }, [pathname]);
 
   return (
     <>
