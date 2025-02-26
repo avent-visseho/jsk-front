@@ -521,11 +521,11 @@ const page = () => {
                       ></span>
                     </p>
                     <p className="font-medium text-muted">
-                      Passionné par les nouvelles technologies de l'information,
-                      l'économie, l'énergie, l’Histoire et, surtout, l'Afrique,
-                      et animé par la joie de transmettre, je suis auteur de
-                      deux essais et intervient régulièrement au travers de
-                      chroniques écrites ou d’émissions télévisées.
+                      Fasciné par les nouvelles technologies de l'information,
+                      l'économie, l'Histoire et tout particulièrement par
+                      l'Afrique, et porté par la passion de transmettre, j'ai
+                      publié quatre essais et j'interviens régulièrement au
+                      travers de chroniques écrites et d'émissions télévisées
                     </p>
                     <div
                       style={{

@@ -19,7 +19,7 @@
   };
 
   // Off canvas sidebar
-/*   var OffCanvas = function () {
+  var OffCanvas = function () {
     $("#off-canvas-toggle").on("click", function () {
       $("body").toggleClass("canvas-opened");
     });
@@ -30,7 +30,7 @@
     $(".off-canvas-close").on("click", function () {
       $("body").removeClass("canvas-opened");
     });
-  }; */
+  };
 
    // Search form
   var openSearchForm = function () {

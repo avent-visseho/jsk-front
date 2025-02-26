@@ -28,10 +28,13 @@ const Footer = () => {
                 </div>
                 <div className="textwidget">
                   <p>
-                    Je suis actuellement Directeur Général du think thank
-                    L'Afrique des idées. Je suis ingénieur diplômé de l'école
-                    CentraleSupélec à Paris et économiste diplômé du
-                    Conservatoire National des Arts et Métiers de Paris.
+                    Je dirige un think tank parisien centré sur les questions
+                    africaines et j’enseigne l’économie dans le cadre du
+                    parcours MBA du Centre de Valorisation Professionnelle de
+                    Tunis. Essayiste, j’ai déjà publié quatre ouvrages. Membre
+                    du Conseil d’administration d’InterGlobe Conseils, je
+                    supervise également le département des économies africaines
+                    et internationales
                   </p>
                   <p>
                     <Image className="signature" src={Signature} alt="" />
@@ -147,12 +150,12 @@ const Footer = () => {
           </div>
           <div className="footer-copy-right pt-30 mt-20 wow fadeInUp animated">
             <p className="float-md-left font-small text-muted">
-              © 2023 Sophonie Jed Koboude
+              © {new Date().getFullYear()} Jed Sophonie Koboude
             </p>
             <p className="float-md-right font-small text-muted">
-              Par
+              {/* Par */}
               <a href="" target="_blank">
-                Jsk-opinions
+                JSK - 0pinions
               </a>{" "}
               | Tous droits réservés
             </p>

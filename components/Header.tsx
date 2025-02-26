@@ -2,10 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Blog1 from "@/assets/imgs/jed/blogs/blog-1.jpg";
-import Blog2 from "@/assets/imgs/jed/blogs/blog-2.jpg";
-import Blog3 from "@/assets/imgs/jed/blogs/blog-3.jpg";
-import Ecole229 from "@/assets/imgs/jed/blogs/ecole229.png";
 import Logo from "@/assets/imgs/jed/blogs/logo.png";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,7 +16,7 @@ const Header = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSearchOpen(false);
-    const body = document.querySelector('body');
+    const body = document.querySelector("body");
     body?.classList.remove("open-search-form");
 
     // Redirige sur la page de recherche
@@ -37,7 +33,16 @@ const Header = () => {
       </div>
 
       {/* <!--Offcanvas sidebar--> */}
-
+      {/* <!--Offcanvas sidebar--> */}
+      <aside
+        id="sidebar-wrapper"
+        className="custom-scrollbar offcanvas-sidebar"
+      >
+        <button className="off-canvas-close">
+          <i className="fa-solid fa-xmark"></i>
+        </button>
+        <div className="sidebar-inner"></div>
+      </aside>
       {/* <!-- Start Header --> */}
       <header
         className="main-header header-style-1 font-heading position-fixed top-0 w-100 bg-white"
@@ -96,20 +101,32 @@ const Header = () => {
                         pathname == "/" ? "text-primary font-weight-bold" : ""
                       }
                     >
-                      <i className="fa-solid fa-house"></i> Acceuil
+                      <i className="fa-solid fa-house"></i> Accueil
                     </Link>
                   </li>
                   <li>
                     <Link
-                    className={
-                      pathname == "/#author" ? "text-primary font-weight-bold" : ""
-                    } href="/#author">À propos</Link>
+                      className={
+                        pathname == "/#author"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                      href="/#author"
+                    >
+                      À propos
+                    </Link>
                   </li>
                   <li>
-                    <Link 
-                    className={
-                      pathname == "/#contact" ? "text-primary font-weight-bold" : ""
-                    } href="/#contact">Contact</Link>
+                    <Link
+                      className={
+                        pathname == "/#contact"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                      href="/#contact"
+                    >
+                      Contact
+                    </Link>
                   </li>
                   <li
                     className={
@@ -155,38 +172,88 @@ const Header = () => {
                 {/*  <!--Mobile menu--> */}
                 <ul id="mobile-menu" className="d-block d-lg-none text-muted">
                   <li className="menu-item-has-children">
-                    <a href="/">
+                    <Link
+                      href="/"
+                      className={
+                        pathname == "/" ? "text-primary font-weight-bold" : ""
+                      }
+                    >
                       <i className="fa-solid fa-house"></i> Accueil
-                    </a>
+                    </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/#author">À propos</Link>
+                    <Link
+                      href="/#author"
+                      className={
+                        pathname == "/#author"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                    >
+                      À propos
+                    </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/#contact">Contact</Link>
+                    <Link
+                      href="/#contact"
+                      className={
+                        pathname == "/#contact"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                    >
+                      Contact
+                    </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/publications">Publications</Link>
+                    <Link
+                      href="/publications"
+                      className={
+                        pathname == "/publications/"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                    >
+                      Publications
+                    </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/interventions">Interventions</Link>
+                    <Link
+                      href="/interventions"
+                      className={
+                        pathname == "/interventions/"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                    >
+                      Interventions
+                    </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/blog">Blog</Link>
+                    <Link
+                      href="/blog"
+                      className={
+                        pathname == "/blog/"
+                          ? "text-primary font-weight-bold"
+                          : ""
+                      }
+                    >
+                      Blog
+                    </Link>
                   </li>
                 </ul>
               </nav>
             </div>
             <div className="float-right header-tools text-muted font-small">
               <SocialLinks />
-              <div className="off-canvas-toggle-cover d-inline-block">
+              {/* <div className="off-canvas-toggle-cover d-inline-block">
                 <div
                   className="off-canvas-toggle hidden d-inline-block"
                   id="off-canvas-toggle"
                 >
                   <span></span>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="clearfix"></div>
           </div>
@@ -214,7 +281,7 @@ const Header = () => {
                         required
                       />
                       <div className="input-group-append">
-                        <button type="submit" className="btn btn-primary" >
+                        <button type="submit" className="btn btn-primary">
                           <i className="fa-solid fa-magnifying-glass"></i>
                           Rechercher
                         </button>
