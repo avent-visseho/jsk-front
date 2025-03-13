@@ -5,48 +5,72 @@ export const generateMetadata = (
   const metadataConfig = {
     title,
     description,
-    url: "https://jsk-opinions.com/",
     image: "/favicon.ico",
     twitter: "@koboude",
     email: "contact@jsk-opinions.com",
-    keywords:
-      "JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire, chroniques, analyses, histoire, politique, articles, opinions",
+    appleTouchIcon:"/assets/imgs/favicon_io/apple-touch-icon.png"
   };
 
   return {
-    metadataBase: new URL(metadataConfig.url),
     robots: "follow, index",
-    title: metadataConfig.title,
-    description: metadataConfig.description,
-    icons: {
-      icon: metadataConfig.image,
-    },    
-    keywords: metadataConfig.keywords,
+    title: title,
+    description: description,
+    keywords: [
+      "JSK Opinions",
+      "Jed Sophonie Koboude",
+      "analyse",
+      "chronique",
+      "Afrique",
+      "économie",
+      "histoire",
+      "chroniques",
+      "analyses",
+      "histoire",
+      "politique",
+      "articles",
+      "opinions",
+    ],
     openGraph: {
-      title: metadataConfig.title,
+      title: title,
+      description: description,
+      url: "https://jsk-opinions.com",
+      siteName: "JSK Opinions",
       type: "website",
-      description: metadataConfig.description,
-      url: metadataConfig.url,
       images: [
         { url: metadataConfig.image, width: 256, height: 256, alt: "favicon" },
+        {
+          url: "/assets/imgs/jed/blogs/jed.png",
+          width: 1200,
+          height: 630,
+          alt: "JSK Opinions",
+        },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: metadataConfig.title,
-      description: metadataConfig.description,
-      site: metadataConfig.twitter,
-      creator: metadataConfig.twitter,
+      site: "@koboude",
+      title: title,
+      description: description,
+      creator: "@koboude",
       images: [
+        "/assets/imgs/jed/blogs/jed.png",
         { url: metadataConfig.image, width: 256, height: 256, alt: "favicon" },
       ],
     },
-    author: "Jed Sophonie Koboude", 
-    email: metadataConfig.email,   
-    canonical: metadataConfig.url,
+    author: "Jed Sophonie Koboude",
+    email: metadataConfig.email,
     contact: {
       email: metadataConfig.email,
     },
+    icons: {
+      icon: metadataConfig.image,
+      apple: metadataConfig.appleTouchIcon,
+    },
+    themeColor: "#ffffff",
     robotsMeta: "index, follow",
+    metadataBase: new URL("https://jsk-opinions.com"),
+    alternates: {
+      canonical: "/",
+    },
   };
 };

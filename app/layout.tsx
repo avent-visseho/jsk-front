@@ -106,7 +106,21 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-
+      </Head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} open-search-fojrm`}
+      >
+        <Header />
+        <Suspense fallback={<Loader />}>
+          <main
+            style={{
+              paddingTop: "100px",
+            }}
+          >
+            {children}
+          </main>
+        </Suspense>
+        <Footer />
         <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -124,21 +138,6 @@ export default function RootLayout({
             }),
           }}
         />
-      </Head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} open-search-fojrm`}
-      >
-        <Header />
-        <Suspense fallback={<Loader />}>
-          <main
-            style={{
-              paddingTop: "100px",
-            }}
-          >
-            {children}
-          </main>
-        </Suspense>
-        <Footer />
         {/* <!-- Vendor JS--> */}
         <Script src="/js/vendor/modernizr-3.6.0.min.js"></Script>
         <Script src="/js/vendor/jquery-3.6.0.min.js"></Script>
