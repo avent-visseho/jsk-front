@@ -9,9 +9,20 @@ import {
   postHistory,
   readPost,
 } from "@/services/DataService";
-import { formatPublishedDate } from "@/helpers/utils";
+import {
+  formatPostName,
+  formatPublishedDate,
+  sanitizeContent,
+} from "@/helpers/utils";
 import Loader from "@/components/Loader";
 import SocialLinks from "@/components/SocialLinks";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+});
 
 const BlogDetail = () => {
   const [post, setPost] = useState<any>(null);
@@ -20,6 +31,7 @@ const BlogDetail = () => {
   const [posts, setPosts] = useState([]);
   const id = searchParams.get("q") ?? "";
   const pathname = usePathname();
+  //const cleanContent = content.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, "");
 
   useEffect(() => {
     postHistory(pathname);
@@ -42,13 +54,18 @@ const BlogDetail = () => {
   }, [id, pathname]);
   return (
     <div>
-      <main className="bg-grey pt-50 pb-50">
+      <main className=" pt-50 pb-50">
         <div className="pb-50">
           {loading ? (
-            <Loader />
+            <div className="row mt-10 pt-100 align-items-center justify-content-center">
+              <Loader />
+            </div>
           ) : (
             <div className="container">
-              <div className="row">
+              <div
+                className="row mt-10 pt-100"
+                style={{ fontFamily: "Inter sans-serif" }}
+              >
                 <div className="col-lg-8">
                   <div className="single-content2">
                     <div className="entry-header entry-header-style-1 mb-50">
@@ -69,7 +86,7 @@ const BlogDetail = () => {
                                 />
                               </a>
                               Par &nbsp;
-                              <a href="author.html">
+                              <a href="#">
                                 <span className="author-name font-weight-bold">
                                   {post?.title &&
                                     post?.author?.firstName +
@@ -113,13 +130,13 @@ const BlogDetail = () => {
                       <div className=" mb-30">
                         <p
                           dangerouslySetInnerHTML={{
-                            __html: post?.content,
+                            __html: sanitizeContent(post?.content),
                           }}
                           style={{
                             //fontSize: "15px",
                             lineHeight: "30px",
                           }}
-                          className="text-muted font-medium"
+                          className={`text-mugted font-medium ${inter.className}`}
                         />
                       </div>
                     </article>
@@ -144,12 +161,11 @@ const BlogDetail = () => {
                         ></span>
                       </p>
                       <p className="font-medium text-muted">
-                        Passionné par les nouvelles technologies de
-                        l'information, l'économie, l'énergie, l’Histoire et,
-                        surtout, l'Afrique, et animé par la joie de transmettre,
-                        je suis auteur de deux essais et intervient
-                        régulièrement au travers de chroniques écrites ou
-                        d’émissions télévisées.
+                        Fasciné par les nouvelles technologies de l'information,
+                        l'économie, l'Histoire et tout particulièrement par
+                        l'Afrique, et porté par la passion de transmettre, j'ai
+                        publié quatre essais et j'interviens régulièrement au
+                        travers de chroniques écrites et d'émissions télévisées.
                       </p>
                       <div
                         style={{
@@ -178,7 +194,13 @@ const BlogDetail = () => {
                               <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
                                 <div className="post-content media-body">
                                   <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                    <a href="details">{data.title}</a>
+                                    <a
+                                      href={`/blog/article?title=${formatPostName(
+                                        data?.title
+                                      )}&q=${data?.id}`}
+                                    >
+                                      {data.title}
+                                    </a>
                                   </h6>
                                   <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
                                     <span className="post-on">
@@ -190,7 +212,7 @@ const BlogDetail = () => {
                                   </div>
                                 </div>
                                 <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
-                                  <a className="color-white" href="details">
+                                  <a className="color-white" href="#">
                                     <Image
                                       src={`${process.env.NEXT_PUBLIC_FILE_URL}/${data.coverImage}`}
                                       alt=""

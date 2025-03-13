@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
 import { fullSearch, postHistory } from "@/services/DataService";
-import { getEmbedUrl } from "@/helpers/utils";
+import { getEmbedUrl, sanitizeContent } from "@/helpers/utils";
 import BottomSection from "@/components/BottomSection";
 import Pagination from "@/components/Pagination";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -38,7 +38,7 @@ const page = () => {
     <>
       {/* <!-- Start Main content --> */}
       <>
-        <div className="archive-header pt-50">
+        <div className="archive-header pt-115">
           <div className="container">
             <h2 className="font-weight-900">Interventions</h2>
             <h5 className="mt-20 text-primary">
@@ -103,13 +103,13 @@ const page = () => {
                           </div>
                           <div className="d-flex post-card-content">
                             <h6 className="post-title mb-20 font-weight-900">
-                              <a href="single.html">{interv?.title}</a>
+                              <a href="#">{interv?.title}</a>
                             </h6>
                             <div>
                               <p
                                 className="font-medium text-muted"
                                 dangerouslySetInnerHTML={{
-                                  __html: interv?.description,
+                                  __html: sanitizeContent(interv),
                                 }}
                               />
                             </div>

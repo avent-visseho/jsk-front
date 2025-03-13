@@ -5,6 +5,7 @@ import BottomSection from "@/components/BottomSection";
 import Pagination from "@/components/Pagination";
 import { usePathname, useSearchParams } from "next/navigation";
 import Loader from "@/components/Loader";
+import { sanitizeContent } from "@/helpers/utils";
 
 const page = () => {
   const [books, setBooks] = useState([]);
@@ -53,7 +54,7 @@ const page = () => {
     <>
       {/* <!-- Start Main content --> */}
       <>
-        <div className="archive-header pt-50 text-left">
+        <div className="archive-header pt-115 text-left">
           <div className="container">
             <h2 className="font-weight-900">Livres, articles & tribunes</h2>
             <span className="text-primary font-weight-900">À la une</span>
@@ -77,13 +78,13 @@ const page = () => {
                             backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${head.coverImage})`,
                           }}
                         >
-                          <a className="img-link" href="single.html"></a>
+                          <a className="img-link" href={head?.link}></a>
                           <span className="top-right-icon bg-success">
                             <i className="elegant-icon icon_camera_alt"></i>
                           </span>
                           <ul className="social-share">
                             <li>
-                              <a href="#">
+                              <a href={"#"}>
                                 <i
                                   className="fa-solid fa-share-nodes"
                                   style={{ color: "#fff" }}
@@ -143,7 +144,7 @@ const page = () => {
                             <p
                               className="font-medium text-muted blog-box"
                               dangerouslySetInnerHTML={{
-                                __html: head?.description,
+                                __html: sanitizeContent(head?.description),
                               }}
                             />
                           </div>
@@ -186,7 +187,7 @@ const page = () => {
                             <p
                               className="font-medium text-muted"
                               dangerouslySetInnerHTML={{
-                                __html: book?.description,
+                                __html: sanitizeContent(book?.description),
                               }}
                             />
                           </div>
@@ -266,7 +267,7 @@ const page = () => {
                             <p
                               className="font-medium text-muted"
                               dangerouslySetInnerHTML={{
-                                __html: tribune?.description,
+                                __html: sanitizeContent(tribune?.description),
                               }}
                             />
                           </div>

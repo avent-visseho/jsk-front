@@ -34,7 +34,7 @@ const Footer = () => {
                     Tunis. Essayiste, j’ai déjà publié quatre ouvrages. Membre
                     du Conseil d’administration d’InterGlobe Conseils, je
                     supervise également le département des économies africaines
-                    et internationales
+                    et internationales.
                   </p>
                   <p>
                     <Image className="signature" src={Signature} alt="" />

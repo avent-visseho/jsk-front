@@ -50,7 +50,7 @@ const Header = () => {
       >
         <div className="header-top">
           <div className="container">
-            <div className="row pt-20 pb-20">
+            <div className="row pt-10 pb-10">
               <div className="col-md-3 col-xs-6">
                 <a href="/">
                   <Image className="logo" src={Logo} alt="" />
@@ -87,7 +87,15 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="header-sticky">
+        <div
+          className="header-sticky"
+          style={{
+            height: "100px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div className="container align-self-center position-relative">
             <div className="mobile_menu d-lg-none d-block"></div>
             <div className="main-nav d-none d-lg-block float-left">

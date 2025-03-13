@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { getCategories, postHistory, searchPost } from "@/services/DataService";
-import { formatPostName, formatPublishedDate } from "@/helpers/utils";
+import { formatPostName, formatPublishedDate, sanitizeContent } from "@/helpers/utils";
 import Link from "next/link";
 import BottomSection from "@/components/BottomSection";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
@@ -75,7 +75,7 @@ const page = () => {
   return (
     <>
       {/* <!-- Start Main content --> */}
-      <div className="archive-header pt-50">
+      <div className="archive-header pt-115">
         <div className="container">
           <h2 className="font-weight-900">JSK Opinions</h2>
           <p className="mt-20">
@@ -342,7 +342,7 @@ const page = () => {
                               <p
                                 className="font-medium text-muted blog-box"
                                 dangerouslySetInnerHTML={{
-                                  __html: post?.content,
+                                  __html: sanitizeContent(post?.content),
                                 }}
                               />
                             </div>

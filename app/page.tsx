@@ -14,7 +14,7 @@ import {
   postHistory,
   subscribeEmail,
 } from "@/services/DataService";
-import { formatPostName, formatPublishedDate } from "@/helpers/utils";
+import { formatPostName, formatPublishedDate, sanitizeContent } from "@/helpers/utils";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
 import Loader from "@/components/Loader";
@@ -211,7 +211,12 @@ const page = () => {
                               backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${post.coverImage})`,
                             }}
                           >
-                            <a className="img-link" href="details"></a>
+                            <a
+                              className="img-link"
+                              href={`/blog/article?title=${formatPostName(
+                                post?.title
+                              )}&q=${post?.id}`}
+                            ></a>{" "}
                             <span className="top-left-icon bg-warning">
                               <i
                                 className="fa-regular fa-star"
@@ -233,9 +238,9 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/${formatPostName(
+                                  href={`/blog/article?title=${formatPostName(
                                     post?.title
-                                  )}?q=${post?.id}`}
+                                  )}&q=${post?.id}`}
                                 >
                                   {post?.title}
                                 </Link>
@@ -259,7 +264,12 @@ const page = () => {
                               backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${posts[1]?.coverImage})`,
                             }}
                           >
-                            <a className="img-link" href="details"></a>
+                            <a
+                              className="img-link"
+                              href={`/blog/article?title=${formatPostName(
+                                posts[1]?.title
+                              )}&q=${posts[1]?.id}`}
+                            ></a>
                             <span className="top-left-icon bg-danger">
                               <i className="elegant-icon icon_image"></i>
                             </span>
@@ -278,9 +288,9 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/${formatPostName(
+                                  href={`/blog/article?title=${formatPostName(
                                     posts[1]?.title
-                                  )}?q=${posts[1]?.id}`}
+                                  )}&q=${posts[1]?.id}`}
                                 >
                                   {posts[1]?.title}
                                 </Link>
@@ -374,9 +384,9 @@ const page = () => {
                         <div className="d-flex post-card-content">
                           <h5 className="post-title mb-20 font-weight-900">
                             <Link
-                              href={`/blog/${formatPostName(post?.title)}?q=${
-                                post?.id
-                              }`}
+                              href={`/blog/article?title=${formatPostName(
+                                post?.title
+                              )}&q=${post?.id}`}
                             >
                               {post?.title}
                             </Link>{" "}
@@ -421,7 +431,7 @@ const page = () => {
                                   backgroundImage: `url(${process.env.NEXT_PUBLIC_FILE_URL}/${tribune.coverImage})`,
                                 }}
                               >
-                                <a className="img-link" href="details"></a>
+                                <a className="img-link" href="#"></a>
                                 <ul className="social-share">
                                   <li>
                                     <a href="#">
@@ -487,16 +497,17 @@ const page = () => {
                                     <p
                                       //className="font-medium text-muted"
                                       dangerouslySetInnerHTML={{
-                                        __html: tribune?.description,
+                                        __html: sanitizeContent(tribune?.description),
                                       }}
                                     />
                                   </div>
                                   <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
                                     <span
-                                      className="post-on text-primary"
+                                      className="post-on text-primary cursor-pointer"
                                       onClick={() => {
                                         window.open(tribune?.link, "_blank");
                                       }}
+                                      style={{ cursor: "pointer" }}
                                     >
                                       <strong>Tout lire</strong>
                                     </span>
@@ -531,7 +542,7 @@ const page = () => {
                       l'économie, l'Histoire et tout particulièrement par
                       l'Afrique, et porté par la passion de transmettre, j'ai
                       publié quatre essais et j'interviens régulièrement au
-                      travers de chroniques écrites et d'émissions télévisées
+                      travers de chroniques écrites et d'émissions télévisées.
                     </p>
                     <div
                       style={{
@@ -560,7 +571,7 @@ const page = () => {
                             <div className="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
                               <div className="post-content media-body">
                                 <h6 className="post-title mb-15 text-limit-2-row font-medium">
-                                  <a href="details">{book.title}</a>
+                                  <span >{book.title}</span>
                                 </h6>
 
                                 <button

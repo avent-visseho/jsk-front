@@ -15,11 +15,7 @@ export const getEmbedUrl = (url: string) => {
   if (url.includes("youtube.com/embed/")) {
     return url; // Si l'URL est déjà au format embed, la retourner telle quelle
   }
-  if (
-    /^https:\/\/(www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/.test(
-      url
-    )
-  ) {
+  if (/^https:\/\/(www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/.test(url)) {
     const videoId = url.split("v=")[1] || url.split("/").pop();
     return `https://www.youtube.com/embed/${videoId}`;
   }
@@ -35,3 +31,12 @@ export const getEmbedUrl = (url: string) => {
   const videoId = url.split("v=")[1] || url.split("/").pop();
   return `https://www.youtube.com/embed/${videoId}`;
 };
+
+export function sanitizeContent(content: string | undefined | null): string {
+  if (!content) return "";
+
+  return content
+    .replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, "") // Supprime les paragraphes vides
+    .replace(/«\?/g, "« ") // Remplace «? par «
+    .replace(/\?»/g, " »"); // Remplace ?» par »
+}
