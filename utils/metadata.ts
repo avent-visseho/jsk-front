@@ -1,14 +1,15 @@
 export const generateMetadata = (
   title = "SK Opinions - Informer, Contribuer, Transmettre",
-  description = "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire"
+  description = "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire",
+  image = "/favicon.ico",
+  path = "/",
 ) => {
   const metadataConfig = {
-    title,
-    description,
-    image: "/favicon.ico",
     twitter: "@koboude",
     email: "contact@jsk-opinions.com",
-    appleTouchIcon:"/assets/imgs/favicon_io/apple-touch-icon.png"
+    appleTouchIcon: "/assets/imgs/favicon_io/apple-touch-icon.png",
+    fullUrl : `https://jsk-opinions.com${path}`
+
   };
 
   return {
@@ -16,6 +17,17 @@ export const generateMetadata = (
     title: title,
     description: description,
     keywords: [
+      "JSK blogs",
+      "JSK tribunes",
+      "jsk blog",
+      "jsk opinions",
+      "jsk",
+      "jsk analyse",
+      "jsk chronique",
+      "jsk histoire",
+      "jsk économie",
+      "jsk politique",
+      "jsk articles",
       "JSK Opinions",
       "Jed Sophonie Koboude",
       "analyse",
@@ -33,11 +45,11 @@ export const generateMetadata = (
     openGraph: {
       title: title,
       description: description,
-      url: "https://jsk-opinions.com",
+      url: metadataConfig.fullUrl,
       siteName: "JSK Opinions",
       type: "website",
       images: [
-        { url: metadataConfig.image, width: 256, height: 256, alt: "favicon" },
+        { url: image, width: 256, height: 256, alt: "favicon" },
         {
           url: "/assets/imgs/jed/blogs/jed.png",
           width: 1200,
@@ -54,7 +66,7 @@ export const generateMetadata = (
       creator: "@koboude",
       images: [
         "/assets/imgs/jed/blogs/jed.png",
-        { url: metadataConfig.image, width: 256, height: 256, alt: "favicon" },
+        { url: image, width: 256, height: 256, alt: "favicon" },
       ],
     },
     author: "Jed Sophonie Koboude",
@@ -63,14 +75,14 @@ export const generateMetadata = (
       email: metadataConfig.email,
     },
     icons: {
-      icon: metadataConfig.image,
+      icon: image,
       apple: metadataConfig.appleTouchIcon,
     },
     themeColor: "#ffffff",
     robotsMeta: "index, follow",
     metadataBase: new URL("https://jsk-opinions.com"),
     alternates: {
-      canonical: "/",
+      canonical: metadataConfig.fullUrl,
     },
   };
 };

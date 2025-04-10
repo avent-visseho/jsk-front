@@ -7,7 +7,7 @@ export const formatPublishedDate = (date: string) => {
 };
 
 export const formatPostName = (name: string): string => {
-  return name.replace(/[\s'_]/g, "-").toLocaleLowerCase();
+  return name?.replace(/[\s'_]/g, "-").toLocaleLowerCase();
 };
 
 export const getEmbedUrl = (url: string) => {

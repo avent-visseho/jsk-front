@@ -17,6 +17,7 @@ import {
 import Loader from "@/components/Loader";
 import SocialLinks from "@/components/SocialLinks";
 import { Inter } from "next/font/google";
+import Head from "next/head";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,6 +55,34 @@ const BlogDetail = () => {
   }, [id, pathname]);
   return (
     <div>
+      <Head>
+        <title>{post?.title}</title>
+        <meta property="og:title" content={post?.title} />
+        <meta property="og:description" content={post?.description} />
+        <meta
+          property="og:image"
+          content={process.env.NEXT_PUBLIC_FILE_URL + "/" + post?.coverImage}
+        />
+        <meta
+          property="og:url"
+          content={`https://jsk-opinions.com/blog/article?title=${formatPostName(
+            post?.title
+          )}&q=${post?.id}}`}
+        />
+        <meta property="og:type" content="article" />
+
+        {/* Pour Twitter (optionnel) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post?.title} />
+        <meta
+          name="twitter:description"
+          content={sanitizeContent(post?.content)}
+        />
+        <meta
+          name="twitter:image"
+          content={process.env.NEXT_PUBLIC_FILE_URL + "/" + post?.coverImage}
+        />
+      </Head>
       <main className=" pt-50 pb-50">
         <div className="pb-50">
           {loading ? (

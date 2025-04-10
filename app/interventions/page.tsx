@@ -109,7 +109,7 @@ const page = () => {
                               <p
                                 className="font-medium text-muted"
                                 dangerouslySetInnerHTML={{
-                                  __html: sanitizeContent(interv),
+                                  __html: sanitizeContent(interv?.content),
                                 }}
                               />
                             </div>
