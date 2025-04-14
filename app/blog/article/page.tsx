@@ -41,6 +41,44 @@ const BlogDetail = () => {
     getSinglePost(id)
       .then((res) => {
         setPost(res.data.data);
+        document.title = res.data.data.title + " | JSK Opinions - Informer, Contribuer, Transmettre";
+
+        const metaTags = {
+          description: res.data.data.title.content.substring(0, 160),
+          "og:title": res.data.data.title.title,
+          "og:description": res.data.data.title.content.substring(0, 160),
+          "og:image":
+            process.env.NEXT_PUBLIC_FILE_URL +
+            "/" +
+            res.data.data.title.coverImage,
+          "og:url": `https://jsk-opinions.com/blog/article?title=${formatPostName(
+            res.data.data.title
+          )}&q=${res.data.data.id}`,
+          "twitter:card": "summary_large_image",
+          "twitter:title": res.data.data.title,
+          "twitter:description": res.data.data.content.substring(0, 160),
+          "twitter:image":
+            process.env.NEXT_PUBLIC_FILE_URL + "/" + res.data.data.coverImage,
+        };
+
+        Object.entries(metaTags).forEach(([name, content]) => {
+          // Mettre à jour ou créer la balise meta
+          let meta =
+            document.querySelector(`meta[name="${name}"]`) ||
+            document.querySelector(`meta[property="${name}"]`);
+
+          if (!meta) {
+            meta = document.createElement("meta");
+            if (name.startsWith("og:")) {
+              meta.setAttribute("property", name);
+            } else {
+              meta.setAttribute("name", name);
+            }
+            document.head.appendChild(meta);
+          }
+
+          meta.setAttribute("content", content);
+        });
       })
       .catch(() => {
         setLoading(false);
@@ -59,6 +97,10 @@ const BlogDetail = () => {
         <title>{post?.title}</title>
         <meta property="og:title" content={post?.title} />
         <meta property="og:description" content={post?.description} />
+        <meta
+          name="keywords"
+          content="JSK Blog, blog, jsk blog, JSK blogs, JSK tribunes, jsk blog, jsk opinions, jsk, jsk analyse, jsk chronique, jsk histoire, jsk économie, jsk politique, jsk articles, JSK Opinions,      Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire, chroniques, analyses, histoire, politique, articles, opinions, jsk, JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire"
+        />
         <meta
           property="og:image"
           content={process.env.NEXT_PUBLIC_FILE_URL + "/" + post?.coverImage}

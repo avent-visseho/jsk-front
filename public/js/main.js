@@ -411,13 +411,13 @@
   /* WOW active */
   new WOW().init();
 
-  $("body").bind("cut copy paste", function (e) {
+/*   $("body").bind("cut copy paste", function (e) {
     e.preventDefault();
-  });
+  }); */
 
-  $("body").on("contextmenu", function (e) {
+/*   $("body").on("contextmenu", function (e) {
     return false;
-  });
+  }); */
 
   //Load functions
   $(document).ready(function () {

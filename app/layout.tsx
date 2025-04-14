@@ -46,7 +46,7 @@ export default function RootLayout({
         <meta name="description" content={description} />
         <meta
           name="keywords"
-          content="JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire"
+          content="JSK Blog, blog, jsk blog, JSK blogs, JSK tribunes, jsk blog, jsk opinions, jsk, jsk analyse, jsk chronique, jsk histoire, jsk économie, jsk politique, jsk articles, JSK Opinions,      Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire, chroniques, analyses, histoire, politique, articles, opinions, jsk, JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire"
         />
         <meta property="og:title" content={title} />
         <meta
