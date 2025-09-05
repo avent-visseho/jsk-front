@@ -2,14 +2,13 @@ export const generateMetadata = (
   title = "SK Opinions - Informer, Contribuer, Transmettre",
   description = "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire",
   image = "/favicon.ico",
-  path = "/",
+  path = "/"
 ) => {
   const metadataConfig = {
     twitter: "@koboude",
     email: "contact@jsk-opinions.com",
     appleTouchIcon: "/assets/imgs/favicon_io/apple-touch-icon.png",
-    fullUrl : `https://jsk-opinions.com${path}`
-
+    fullUrl: `https://jsk-opinions.com${path}`,
   };
 
   return {
@@ -85,4 +84,46 @@ export const generateMetadata = (
       canonical: metadataConfig.fullUrl,
     },
   };
+};
+
+const convertImageToWebP = (url: string): Promise<Blob> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous"; // nécessaire pour les images externes
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        reject(new Error("Could not get canvas context"));
+        return;
+      }
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error("Conversion to WebP failed"));
+          }
+        },
+        "image/webp",
+        0.92 // qualité
+      );
+    };
+    img.onerror = () => reject(new Error("Image loading failed"));
+    img.src = url;
+  });
+};
+
+const sharp = require("sharp");
+const convertImageToWebPWithSharp = () => {
+  sharp("input.jpg")
+    .resize(1200, 630)
+    .toFormat("webp")
+    .toFile("output.webp", (err, info) => {
+      if (err) throw err;
+      console.log("Image converted successfully:", info);
+    });
 };
