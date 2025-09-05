@@ -47,7 +47,7 @@ export const fullSearch = (
 export const getPost = (page: number = 1, limit: number = 10) => {
   return axios.get(`/post/all-published?page=${page}&limit=${limit}`);
 };
-export const getSinglePost = (id: string) => {
+export const getSinglePost = async (id: string) => {
   return axios.get(`/post/${id}`);
 };
 export const readPost = (id: string) => {

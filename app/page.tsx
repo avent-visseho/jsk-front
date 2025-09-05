@@ -213,9 +213,9 @@ const page = () => {
                           >
                             <a
                               className="img-link"
-                              href={`/blog/article?title=${formatPostName(
+                              href={`/blog/article/${formatPostName(
                                 post?.title
-                              )}&q=${post?.id}`}
+                              )}/${post?.id}`}
                             ></a>{" "}
                             <span className="top-left-icon bg-warning">
                               <i
@@ -238,9 +238,9 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/article?title=${formatPostName(
+                                  href={`/blog/article/${formatPostName(
                                     post?.title
-                                  )}&q=${post?.id}`}
+                                  )}/${post?.id}`}
                                 >
                                   {post?.title}
                                 </Link>
@@ -266,9 +266,9 @@ const page = () => {
                           >
                             <a
                               className="img-link"
-                              href={`/blog/article?title=${formatPostName(
+                              href={`/blog/article/${formatPostName(
                                 posts[1]?.title
-                              )}&q=${posts[1]?.id}`}
+                              )}/${posts[1]?.id}`}
                             ></a>
                             <span className="top-left-icon bg-danger">
                               <i className="elegant-icon icon_image"></i>
@@ -288,9 +288,9 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/article?title=${formatPostName(
+                                  href={`/blog/article/${formatPostName(
                                     posts[1]?.title
-                                  )}&q=${posts[1]?.id}`}
+                                  )}/${posts[1]?.id}`}
                                 >
                                   {posts[1]?.title}
                                 </Link>
@@ -384,9 +384,9 @@ const page = () => {
                         <div className="d-flex post-card-content">
                           <h5 className="post-title mb-20 font-weight-900">
                             <Link
-                              href={`/blog/article?title=${formatPostName(
+                              href={`/blog/article/${formatPostName(
                                 post?.title
-                              )}&q=${post?.id}`}
+                              )}/${post?.id}`}
                             >
                               {post?.title}
                             </Link>{" "}

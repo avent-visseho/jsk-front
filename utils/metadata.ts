@@ -116,14 +116,3 @@ const convertImageToWebP = (url: string): Promise<Blob> => {
     img.src = url;
   });
 };
-
-const sharp = require("sharp");
-const convertImageToWebPWithSharp = () => {
-  sharp("input.jpg")
-    .resize(1200, 630)
-    .toFormat("webp")
-    .toFile("output.webp", (err, info) => {
-      if (err) throw err;
-      console.log("Image converted successfully:", info);
-    });
-};

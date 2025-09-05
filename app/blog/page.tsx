@@ -331,9 +331,9 @@ const page = () => {
                           <div className="d-flex post-card-content">
                             <h6 className="post-title mb-20 font-weight-900">
                               <Link
-                                href={`/blog/article?title=${formatPostName(
+                                href={`/blog/article/${formatPostName(
                                   post?.title
-                                )}&q=${post?.id}`}
+                                )}/${post?.id}`}
                               >
                                 {post?.title}
                               </Link>
