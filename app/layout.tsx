@@ -7,10 +7,6 @@ import Footer from "@/components/Footer";
 import React, { Suspense, useEffect } from "react";
 import Head from "next/head";
 import Loader from "@/components/Loader";
-import appleTouchIcon from "@/assets/imgs/favicon_io/apple-touch-icon.png";
-import favicon16 from "@/assets/imgs/favicon_io/favicon-16x16.png";
-import favicon32 from "@/assets/imgs/favicon_io/favicon-32x32.png";
-import favicon from "@/assets/imgs/favicon_io/favicon.ico";
 import { generateMetadata } from "@/utils/metadata";
 
 const geistSans = localFont({
@@ -34,53 +30,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const title = "JSK Opinions - Informer, Contribuer, Transmettre";
-  const url = "https://jsk-opinions.com";
-  const description =
-    "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire.";
-
   return (
     <html lang="en">
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta
-          name="keywords"
-          content="JSK Blog, blog, jsk blog, JSK blogs, JSK tribunes, jsk blog, jsk opinions, jsk, jsk analyse, jsk chronique, jsk histoire, jsk économie, jsk politique, jsk articles, JSK Opinions,      Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire, chroniques, analyses, histoire, politique, articles, opinions, jsk, JSK Opinions, Jed Sophonie Koboude, analyse, chronique, Afrique, économie, histoire"
-        />
-        <meta property="og:title" content={title} />
-        <meta
-          property="og:description"
-          content="Chroniques et analyses par Jed Sophonie Koboude pour faire progresser le monde à petits pas."
-        />
-        <meta property="og:image" content="/assets/imgs/jed/blogs/jed.png" />
-        <meta property="og:url" content={url} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-        <meta name="robots" content="follow, index" />
-        <meta name="twitter:site" content="@koboude" />
-        <meta name="twitter:image" content={"/assets/imgs/jed/blogs/jed.png"} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-
-        <meta property="og:site_name" content="JSK Opinions" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:type" content={"website"} />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href={appleTouchIcon.src}
-        />
-        <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
-        <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
-        <meta name="msapplication-TileColor" content="#e3363e" />
-        <meta name="theme-color" content="#ffffff" />
-        <link rel="canonical" href={url} />
-        <link rel="shortcut icon" href={favicon.src} />
-
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -132,8 +84,9 @@ export default function RootLayout({
               description:
                 "Essayiste, chroniqueur et analyste passionné par les nouvelles technologies, l'économie et l'Afrique.",
               sameAs: [
-                "https://www.facebook.com/...",
-                "https://www.linkedin.com/...",
+                "https://www.facebook.com/jed.koboude",
+                "https://x.com/koboude",
+                "https://www.linkedin.com/in/sophonie-jed-koboude-622856a9/",
               ],
             }),
           }}

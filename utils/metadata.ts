@@ -1,8 +1,10 @@
 export const generateMetadata = (
-  title = "SK Opinions - Informer, Contribuer, Transmettre",
+  title = "JSK Opinions - Informer, Contribuer, Transmettre",
   description = "Plateforme d'expression libre animée par Jed Sophonie Koboude. Découvrez des analyses et des chroniques sur l'Afrique, l'économie et l'histoire",
   image = "/favicon.ico",
-  path = "/"
+  path = "/",
+  openGraphTitle: "website" | "article" = "website",
+  publishedAt: string = new Date().toISOString()
 ) => {
   const metadataConfig = {
     twitter: "@koboude",
@@ -10,9 +12,13 @@ export const generateMetadata = (
     appleTouchIcon: "/assets/imgs/favicon_io/apple-touch-icon.png",
     fullUrl: `https://jsk-opinions.com${path}`,
   };
+  const getImageType = (imageUrl: string) => {
+    if (imageUrl.toLowerCase().includes(".png")) return "image/png";
+    if (imageUrl.toLowerCase().includes(".webp")) return "image/webp";
+    return "image/jpeg";
+  };
 
   return {
-    robots: "follow, index",
     title: title,
     description: description,
     keywords: [
@@ -40,33 +46,53 @@ export const generateMetadata = (
       "politique",
       "articles",
       "opinions",
+      "Jed",
+      "Sophonie",
+      "Koboude",
+      "Jed Sophonie",
     ],
+    authors: [{ name: "Jed Sophonie Koboude" }],
+    creator: "Jed Sophonie Koboude",
+    publisher: "Jed Sophonie Koboude",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
+      type: openGraphTitle,
       title: title,
       description: description,
       url: metadataConfig.fullUrl,
       siteName: "JSK Opinions",
-      type: "website",
+      locale: "fr_FR",
       images: [
-        { url: image, width: 256, height: 256, alt: "favicon" },
+        // { url: image, width: 256, height: 256, alt: "favicon" },
         {
-          url: "/assets/imgs/jed/blogs/jed.png",
+          url: image,
           width: 1200,
           height: 630,
-          alt: "JSK Opinions",
+          alt: title,
+          type: getImageType(image),
         },
       ],
+      image: image,
+      ...(openGraphTitle === "article" && {
+        authors: ["Jed Sophonie Koboude"],
+        publishedTime: new Date(publishedAt).toISOString(),
+        section: "Blog",
+      })
     },
     twitter: {
       card: "summary_large_image",
       site: "@koboude",
+      creator: "@koboude",
       title: title,
       description: description,
-      creator: "@koboude",
-      images: [
-        "/assets/imgs/jed/blogs/jed.png",
-        { url: image, width: 256, height: 256, alt: "favicon" },
-      ],
+      images: [image],
     },
     author: "Jed Sophonie Koboude",
     email: metadataConfig.email,
@@ -77,7 +103,6 @@ export const generateMetadata = (
       icon: image,
       apple: metadataConfig.appleTouchIcon,
     },
-    themeColor: "#ffffff",
     robotsMeta: "index, follow",
     metadataBase: new URL("https://jsk-opinions.com"),
     alternates: {
@@ -86,33 +111,24 @@ export const generateMetadata = (
   };
 };
 
-const convertImageToWebP = (url: string): Promise<Blob> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "anonymous"; // nécessaire pour les images externes
-    img.onload = function () {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) {
-        reject(new Error("Could not get canvas context"));
-        return;
-      }
-      ctx.drawImage(img, 0, 0);
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            resolve(blob);
-          } else {
-            reject(new Error("Conversion to WebP failed"));
-          }
-        },
-        "image/webp",
-        0.92 // qualité
-      );
-    };
-    img.onerror = () => reject(new Error("Image loading failed"));
-    img.src = url;
-  });
+// Fonction pour nettoyer le contenu HTML
+export const cleanHtmlContent = (html: string, maxLength: number = 160): string => {
+  if (!html) return "";
+  
+  // Supprimer les balises HTML
+  const cleaned = html.replace(/<[^>]*>/g, '');
+  
+  // Nettoyer les entités HTML courantes
+  const entities = cleaned
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+    
+  // Limiter la longueur
+  return entities.length > maxLength 
+    ? entities.substring(0, maxLength).trim() + "..."
+    : entities.trim();
 };

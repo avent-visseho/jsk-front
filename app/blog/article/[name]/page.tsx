@@ -1,16 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
 const Page = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    return router.replace("/blog");
-  }, []);
-
-  return router.replace("/blog");
-  return <div></div>;
+  redirect("/blog");
 };
 
 export default Page;

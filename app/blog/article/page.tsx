@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
 const Page = () => {
@@ -16,7 +16,8 @@ const Page = () => {
     }
   }, []);
 
-  if (!title) return router.replace("/blog");
+  if (!title) redirect("/blog");
+;
   return <div></div>;
 };
 

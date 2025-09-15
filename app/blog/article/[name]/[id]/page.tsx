@@ -2,7 +2,7 @@
 import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import Jed from "@/assets/imgs/jed/blogs/jed.png";
-import { usePathname } from "next/navigation";
+import { notFound, redirect, usePathname } from "next/navigation";
 import {
   getPost,
   getSinglePost,
@@ -10,14 +10,15 @@ import {
   readPost,
 } from "@/services/DataService";
 import {
-  formatPostName,
+  slugify,
   formatPublishedDate,
   sanitizeContent,
 } from "@/helpers/utils";
 import Loader from "@/components/Loader";
 import SocialLinks from "@/components/SocialLinks";
 import { Inter } from "next/font/google";
-import Head from "next/head";
+import { ArticleJsonLd } from "next-seo";
+import { cleanHtmlContent } from "@/utils/metadata";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,11 +32,15 @@ const BlogDetail = ({
   params: Promise<{ name: string; id: string }>;
 }) => {
   const { name, id } = use(params);
+  if (!id) notFound();
 
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const pathname = usePathname();
+
+
+
 
   useEffect(() => {
     postHistory(pathname);
@@ -200,7 +205,7 @@ const BlogDetail = ({
                                 <div className="post-content media-body">
                                   <h6 className="post-title mb-15 text-limit-2-row font-medium">
                                     <a
-                                      href={`/blog/article/${formatPostName(
+                                      href={`/blog/article/${slugify(
                                         data?.title
                                       )}/${data?.id}`}
                                     >
@@ -240,6 +245,29 @@ const BlogDetail = ({
           )}
         </div>
       </main>
+      <ArticleJsonLd
+        type="Article"
+        url={`https://jsk-opinions.com/blog/article/${slugify(
+          post?.title
+        )}/${post?.id}`}
+        publisherName="Jed Sophonie Koboude"
+        publisherLogo="https://jsk-opinions.com/assets/imgs/jed/blogs/jed.png"
+        isAccessibleForFree={true}
+        description={String(cleanHtmlContent(post?.content, 260) || "")}
+        title={String(post?.title || "")}
+        authorName="Jed Sophonie Koboude"
+        datePublished={post?.publishedAt || new Date().toISOString()}
+        dateModified={
+          post?.updatedAt || post?.publishedAt || new Date().toISOString()
+        }
+        images={[
+          post?.coverImage
+            ? `${process.env.NEXT_PUBLIC_FILE_URL}/${encodeURIComponent(
+                post.coverImage
+              )}`
+            : "/assets/imgs/jed/blogs/jed.png"
+        ]}
+      />
     </>
   );
 };

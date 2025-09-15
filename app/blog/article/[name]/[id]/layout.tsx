@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import React, { use } from "react";
-import { generateMetadata as baseGenerateMetadata } from "@/utils/metadata";
+import {
+  generateMetadata as baseGenerateMetadata,
+  cleanHtmlContent,
+} from "@/utils/metadata";
 import { getSinglePost } from "@/services/DataService";
-import { formatPostName } from "@/helpers/utils";
+import { slugify } from "@/helpers/utils";
 
 // Pour une page avec des paramètres de requête comme /blog/article?title=xxx&q=yyy
 export async function generateMetadata({
@@ -16,12 +19,22 @@ export async function generateMetadata({
     // Récupérer l'article par ID plutôt que par slug
     const res: any = await getSinglePost(id);
     const article = res.data.data;
-
+    const imageUrl = `${process.env.NEXT_PUBLIC_FILE_URL}/${encodeURIComponent(
+      article.coverImage
+    )}`;
+    let metaDescription = "";
+    if (article.content) {
+      metaDescription = cleanHtmlContent(article.content, 260);
+    } else {
+      metaDescription = `Découvrez l'article "${article.title}" sur JSK Opinions`;
+    }
     return baseGenerateMetadata(
       article.title,
-      article.content,
-      process.env.NEXT_PUBLIC_FILE_URL + "/" + article.coverImage,
-      `/blog/article/${formatPostName(article?.title)}/${article?.id}`
+      metaDescription,
+      imageUrl,
+      `/blog/article/${slugify(article?.title)}/${article?.id}`,
+      "article",
+      article.publishedAt ?? new Date().toISOString()
     );
   } catch (error) {
     console.error("Error fetching article metadata:", error);
@@ -30,7 +43,8 @@ export async function generateMetadata({
       "Article - JSK Opinions",
       "Découvrez nos articles sur JSK Opinions",
       "/favicon.ico",
-      "/blog/article"
+      "/blog/article",
+      "article"
     );
   }
 }

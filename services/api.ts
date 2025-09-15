@@ -1,7 +1,11 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
-axios.defaults.headers.common["Content-Type"] = "application/json";
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  timeout: 120000, // Timeout global
+});
 
-
-export default axios;
+export default api;

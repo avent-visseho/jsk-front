@@ -40,3 +40,13 @@ export function sanitizeContent(content: string | undefined | null): string {
     .replace(/«\?/g, "« ") // Remplace «? par «
     .replace(/\?»/g, " »"); // Remplace ?» par »
 }
+
+export function slugify(title: string) {
+  return title
+    ?.toLowerCase()
+    ?.normalize("NFD") // décompose les accents
+    ?.replace(/[\u0300-\u036f]/g, "") // supprime les accents
+    ?.replace(/[^a-z0-9 ]/g, "") // supprime caractères spéciaux
+    ?.trim()
+    ?.replace(/\s+/g, "-"); // espaces → tirets
+}

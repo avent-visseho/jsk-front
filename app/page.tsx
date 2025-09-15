@@ -14,7 +14,7 @@ import {
   postHistory,
   subscribeEmail,
 } from "@/services/DataService";
-import { formatPostName, formatPublishedDate, sanitizeContent } from "@/helpers/utils";
+import { formatPublishedDate, sanitizeContent, slugify } from "@/helpers/utils";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
 import Loader from "@/components/Loader";
@@ -213,7 +213,7 @@ const page = () => {
                           >
                             <a
                               className="img-link"
-                              href={`/blog/article/${formatPostName(
+                              href={`/blog/article/${slugify(
                                 post?.title
                               )}/${post?.id}`}
                             ></a>{" "}
@@ -238,7 +238,7 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/article/${formatPostName(
+                                  href={`/blog/article/${slugify(
                                     post?.title
                                   )}/${post?.id}`}
                                 >
@@ -266,7 +266,7 @@ const page = () => {
                           >
                             <a
                               className="img-link"
-                              href={`/blog/article/${formatPostName(
+                              href={`/blog/article/${slugify(
                                 posts[1]?.title
                               )}/${posts[1]?.id}`}
                             ></a>
@@ -288,7 +288,7 @@ const page = () => {
                               <h3 className="post-title font-weight-900 mb-20">
                                 <Link
                                   className="text-white"
-                                  href={`/blog/article/${formatPostName(
+                                  href={`/blog/article/${slugify(
                                     posts[1]?.title
                                   )}/${posts[1]?.id}`}
                                 >
@@ -384,7 +384,7 @@ const page = () => {
                         <div className="d-flex post-card-content">
                           <h5 className="post-title mb-20 font-weight-900">
                             <Link
-                              href={`/blog/article/${formatPostName(
+                              href={`/blog/article/${slugify(
                                 post?.title
                               )}/${post?.id}`}
                             >
