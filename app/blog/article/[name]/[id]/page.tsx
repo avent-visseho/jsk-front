@@ -162,7 +162,7 @@ const BlogDetail = ({
                         width={150}
                         height={150}
                       />
-                      <h5 className="mb-20">Sophonie Jed Koboude</h5>
+                      <h5 className="mb-20">Jed Sophonie Koboude</h5>
                       <p className="text-muted">
                         <span
                           className="typewrite d-inline"
