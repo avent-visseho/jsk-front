@@ -116,7 +116,7 @@ const page = () => {
                   <span
                     className="typewrite d-inline text-primary"
                     data-period="2000"
-                    data-type='[ " Sophonie Jed Koboude. ", "Essayiste. ", "chroniqueur ", "analyste " ]'
+                    data-type='[ " Jed Sophonie Koboude. ", "Essayiste. ", "chroniqueur ", "analyste " ]'
                   ></span>
                 </p>
                 <h2>
@@ -529,12 +529,12 @@ const page = () => {
                       className="about-author-img mb-25"
                       alt=""
                     />
-                    <h5 className="mb-20">Sophonie Jed Koboude</h5>
+                    <h5 className="mb-20">Jed Sophonie Koboude</h5>
                     <p className="text-muted">
                       <span
                         className="typewrite d-inline"
                         data-period="2000"
-                        data-type='[ " Sophonie Jed Koboude. ", "Essayiste. ", "chroniqueur ", "analyste " ]'
+                        data-type='[ " Jed Sophonie Koboude. ", "Essayiste. ", "chroniqueur ", "analyste " ]'
                       ></span>
                     </p>
                     <p className="font-medium text-muted">

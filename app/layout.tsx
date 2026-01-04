@@ -4,7 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import Head from "next/head";
 import Loader from "@/components/Loader";
 import { generateMetadata } from "@/utils/metadata";
