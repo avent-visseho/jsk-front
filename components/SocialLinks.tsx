@@ -13,9 +13,16 @@ const SocialLinks = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            //backgroundColor: "#10243f",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            transition: "all 0.3s ease"
           }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
         >
-          <FiFacebook style={{ color: "#fff", fontSize: "15px" }} />
+          <FiFacebook style={{ color: "#fff", fontSize: "16px" }} />
         </a>
       </li>
       <li className="list-inline-item">
@@ -27,9 +34,16 @@ const SocialLinks = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            //backgroundColor: "#10243f",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            transition: "all 0.3s ease"
           }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
         >
-          <FiX style={{ color: "#fff", fontSize: "15px" }} />
+          <FiX style={{ color: "#fff", fontSize: "16px" }} />
         </a>
       </li>
       <li className="list-inline-item">
@@ -41,9 +55,16 @@ const SocialLinks = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            //backgroundColor: "#10243f",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            transition: "all 0.3s ease"
           }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
         >
-          <FiLinkedin style={{ color: "#fff", fontSize: "15px" }} />
+          <FiLinkedin style={{ color: "#fff", fontSize: "16px" }} />
         </a>
       </li>
     </ul>

@@ -1,13 +1,21 @@
 export interface ILogin {
-  phone_number: string;
+  email: string;
   password: string;
-  user_group: string;
+  rememberMe?: boolean;
 }
 
 export interface IRegister {
-  firstname: string;
-  lastname: string;
-  phone_number: string;
+  fullName: string;
+  email: string;
   password: string;
-  point_of_sale_id: number;
+}
+
+export interface AuthResponse {
+  auth_token: string;
+  refresh_token: string;
+  email: string;
+  user?: any;
+  admin?: any;
+  message: string;
+  success: boolean;
 }

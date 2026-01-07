@@ -50,3 +50,19 @@ export function slugify(title: string) {
     ?.trim()
     ?.replace(/\s+/g, "-"); // espaces → tirets
 }
+
+export const formatPublishedTime = (date: string) => {
+  moment.locale("fr");
+  return moment(date).format("HH:mm");
+};
+
+export const handleSocialShare = (e: React.MouseEvent, platform: "facebook" | "twitter" | "linkedin", shareUrl: string) => {
+  e.preventDefault();
+  const urls = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+  };
+  window.open(urls[platform], "_blank", "width=600,height=400");
+};
+

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useAuth } from "@/components/providers/AuthContext";
 import Image from "next/image";
 import Logo from "@/assets/imgs/jed/blogs/logo.png";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import SocialLinks from "./SocialLinks";
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -59,23 +61,23 @@ const Header = () => {
               <div className="col-md-9 col-xs-6 text-right header-top-right">
                 {(pathname === "/publications/" ||
                   pathname === "/interventions/") && (
-                  <>
-                    <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
-                    <button
-                      className="search-icon d-none d-md-inline"
-                      onClick={() => {
-                        const body = document.querySelector("body");
-                        body?.classList.toggle("open-search-form");
-                        setIsSearchOpen((val) => !val);
-                      }}
-                    >
-                      <span className="mr-15 text-muted font-small">
-                        <i className="fa-solid fa-magnifying-glass"></i>{" "}
-                        Rechercher
-                      </span>
-                    </button>
-                  </>
-                )}
+                    <>
+                      <span className="vertical-divider mr-20 ml-20 d-none d-md-inline"></span>
+                      <button
+                        className="search-icon d-none d-md-inline"
+                        onClick={() => {
+                          const body = document.querySelector("body");
+                          body?.classList.toggle("open-search-form");
+                          setIsSearchOpen((val) => !val);
+                        }}
+                      >
+                        <span className="mr-15 text-muted font-small">
+                          <i className="fa-solid fa-magnifying-glass"></i>{" "}
+                          Rechercher
+                        </span>
+                      </button>
+                    </>
+                  )}
                 <Link
                   className="btn btn-radius bg-primary text-white ml-15 font-small box-shadow"
                   href="/#don"
@@ -83,6 +85,22 @@ const Header = () => {
                   {" "}
                   Faire un don
                 </Link>
+
+                {isAuthenticated ? (
+                  <Link
+                    className="btn btn-radius bg-dark text-white ml-15 font-small box-shadow"
+                    href="/dashboard"
+                  >
+                    Espace Lecteur
+                  </Link>
+                ) : (
+                  <Link
+                    className="btn btn-radius bg-secondary text-white ml-15 font-small box-shadow"
+                    href="/auth/login"
+                  >
+                    Connexion
+                  </Link>
+                )}
               </div>
             </div>
           </div>

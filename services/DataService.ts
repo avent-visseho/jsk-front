@@ -88,6 +88,42 @@ export const postHistory = async (pathname: string) => {
       console.error("Erreur lors du tracking:", error);
     });
 };
+
+export const likePost = (postId: string) => {
+  return axios.post(`/users/like/${postId}`);
+};
+
+export const unlikePost = (postId: string) => {
+  return axios.post(`/users/unlike/${postId}`);
+};
+
+export const addFavorite = (postId: string) => {
+  return axios.post(`/users/favorite/${postId}`);
+};
+
+export const removeFavorite = (postId: string) => {
+  return axios.post(`/users/unfavorite/${postId}`);
+};
+
+export const getCommentsByPost = (postId: string, page: number = 1, limit: number = 50) => {
+  return axios.get(`/comment/byPost?postId=${postId}&page=${page}&limit=${limit}`);
+};
+
+export const postComment = (data: { postId: string; content: string }) => {
+  return axios.post(`/comment`, data);
+};
+
+export const updateComment = (id: string, content: string) => {
+  return axios.patch(`/comment/${id}`, { content });
+};
+
+export const deleteComment = (id: string) => {
+  return axios.delete(`/comment/${id}`);
+};
+
+export const trackRead = (postId: string) => {
+  return axios.post(`/users/read/${postId}`);
+};
 export const getHeadlined = async () => {
   let data: any[] = [];
   const bookResponse = await axios.get("/book/headlined/get");
