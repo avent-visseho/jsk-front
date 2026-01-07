@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://jsk-opinions.com/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://jsk-opinions.com/blog/article/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://jsk-opinions.com/publications/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://jsk-opinions.com/blog/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://jsk-opinions.com/interventions/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://jsk-opinions.com/mentions-legales/</loc><lastmod>2025-09-09T17:29:39.154Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/profile/</loc><lastmod>2026-01-04T21:34:31.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/login/</loc><lastmod>2026-01-04T21:34:31.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/register/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/recommendations/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/settings/notifications/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/mentions-legales/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/history/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/blog/article/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/interventions/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/publications/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/dashboard/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/blog/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/favorites/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsk-opinions.com/comments/</loc><lastmod>2026-01-04T21:34:31.492Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
