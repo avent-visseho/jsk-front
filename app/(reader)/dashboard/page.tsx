@@ -59,8 +59,8 @@ export default function Dashboard() {
                 ]);
 
                 const combined = [
-                    ...history.likes.map(l => ({ id: `l-${l.id}`, title: `Vous avez aimé "${l.title}"`, createdAt: l.createdAt, type: 'favorite' })),
-                    ...history.comments.map(c => ({ id: `c-${c.id}`, title: `Commentaire sur "${c.post?.title}"`, createdAt: c.createdAt, type: 'comment' })),
+                    ...history.likes.map((l: any) => ({ id: `l-${l.id}`, title: `Vous avez aimé "${l.title}"`, createdAt: l.createdAt, type: 'favorite' })),
+                    ...history.comments.map((c: any) => ({ id: `c-${c.id}`, title: `Commentaire sur "${c.post?.title}"`, createdAt: c.createdAt, type: 'comment' })),
                     ...(recommendations || []).map((r: any) => ({ id: `r-${r.id}`, title: `Recommandation : ${r.subject}`, createdAt: r.createdAt, type: 'recommendation' }))
                 ].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 5);
 
