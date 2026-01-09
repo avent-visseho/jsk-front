@@ -19,9 +19,9 @@ export async function generateMetadata({
     // Récupérer l'article par ID plutôt que par slug
     const res: any = await getSinglePost(id);
     const article = res.data.data;
-    const imageUrl = `${process.env.NEXT_PUBLIC_FILE_URL}/${encodeURIComponent(
-      article.coverImage
-    )}`;
+    const imageUrl = article.coverImage
+      ? `${process.env.NEXT_PUBLIC_FILE_URL}/${article.coverImage}`
+      : "/favicon.ico";
     let metaDescription = "";
     if (article.content) {
       metaDescription = cleanHtmlContent(article.content, 260);
